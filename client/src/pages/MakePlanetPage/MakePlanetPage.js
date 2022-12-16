@@ -6,10 +6,10 @@ import StarMap from "./StarMap";
 import MakePlanetInput from "../../components/Common/MakePlanet/MakePlanetInput";
 import MakePlanetSelect from "../../components/Common/MakePlanet/MakePlanetSelect";
 import MakePlanetSelectHeader from "../../components/Common/MakePlanet/MakePlanetSelectHeader";
-import planet1 from "../../assets/img/Planet/planet1.png";
-import planet2 from "../../assets/img/Planet/planet2.png";
-import planet3 from "../../assets/img/Planet/planet3.png";
-import planet4 from "../../assets/img/Planet/planet4.png";
+import Planet1 from "../../assets/img/Planet/planet1.png";
+import Planet2 from "../../assets/img/Planet/planet2.png";
+import Planet3 from "../../assets/img/Planet/planet3.png";
+import Planet4 from "../../assets/img/Planet/planet4.png";
 import MakePlanetMember from "../../components/Common/MakePlanet/MakePlanetMember";
 import MakeMember from "../../components/Common/MakePlanet/MakeMember";
 import MakeMemberBtn from "../../components/Common/MakePlanet/MakeMemberBtn";
@@ -17,11 +17,13 @@ import axios from "axios";
 axios.defaults.headers.common["Authorization"] = localStorage.getItem("token");
 
 const MakePlanetPage = () => {
+  let metaData = localStorage.getItem("userInfo");
+  let userInfo = JSON.parse(metaData);
   const [planetName, setplanetName] = useState("");
   // 멤버 input 관리
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    user_1: "",
+    user_1: userInfo.userID,
     user_2: "",
     user_3: "",
     user_4: "",
@@ -69,7 +71,7 @@ const MakePlanetPage = () => {
     );
     // axios 행성 생성
     axios({
-      url: "http://localhost:8000/api/planet/create",
+      url: process.env.REACT_APP_URL + "/api/planet/create",
       method: "post",
       header: {
         withCredentials: true,
@@ -93,6 +95,10 @@ const MakePlanetPage = () => {
       .catch((err) => console.log(err.response.data));
   };
 
+  const cancelPlanet = () => {
+    navigate("/workspace/main");
+  };
+
   return (
     <div className="">
       <StarMap />
@@ -108,28 +114,28 @@ const MakePlanetPage = () => {
           <MakePlanetSelectHeader value={"행성선택"} />
           <div className="planetBox">
             <MakePlanetSelect
-              id={1}
+              id={Planet1}
               value={planetSelect}
               onClick={GetClick}
-              src={planet1}
+              src={Planet1}
             />
             <MakePlanetSelect
-              id={2}
+              id={Planet2}
               value={planetSelect}
               onClick={GetClick}
-              src={planet2}
+              src={Planet2}
             />
             <MakePlanetSelect
-              id={3}
+              id={Planet3}
               value={planetSelect}
               onClick={GetClick}
-              src={planet3}
+              src={Planet3}
             />
             <MakePlanetSelect
-              id={4}
+              id={Planet4}
               value={planetSelect}
               onClick={GetClick}
-              src={planet4}
+              src={Planet4}
             />
           </div>
           <MakePlanetSelectHeader value={"행성멤버"} />
@@ -137,9 +143,6 @@ const MakePlanetPage = () => {
             text={"멤버1"}
             name={user.user_1}
             value={user.user_1}
-            onChange={(e) => {
-              setUser({ ...user, user_1: e.target.value });
-            }}
           />
 
           <MakePlanetMember
@@ -167,8 +170,10 @@ const MakePlanetPage = () => {
               setUser({ ...user, user_4: e.target.value });
             }}
           />
-
-          <MakeMemberBtn onClick={handlePlanet} />
+          <div className="MakeMemberBtnBox">
+            <MakeMemberBtn onClick={cancelPlanet} title={"취소"} />
+            <MakeMemberBtn onClick={handlePlanet} title={"생성"} />
+          </div>
         </div>
       </div>
     </div>

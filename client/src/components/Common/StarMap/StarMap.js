@@ -14,7 +14,9 @@ const StarMap = () => {
     const resizeRendererToDisplaySize = (renderer) => {
       const canvas = renderer.domElement;
       const width = canvas.clientWidth;
+
       const height = canvas.clientHeight;
+      console.log("제발 멈춰줘");
       const needResize = canvas.width !== width || canvas.height !== height;
       // resize only when necessary
       if (needResize) {

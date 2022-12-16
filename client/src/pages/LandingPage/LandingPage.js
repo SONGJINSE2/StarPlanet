@@ -41,9 +41,11 @@ const LandingPage = () => {
   return (
     <div id="fullpage">
       <img className="background" src={image} />
+
       <div className="section">
         <FirstPage />
       </div>
+
       <div className="section">
         <SecondPage />
       </div>

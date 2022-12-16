@@ -21,7 +21,7 @@ const SignUpPage = memo(() => {
   const handleForm = () => {
     axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/signup",
+      url: process.env.REACT_APP_URL + "/api/auth/signup",
       header: { withCredentials: true },
       data: {
         userID: userID,
@@ -47,7 +47,7 @@ const SignUpPage = memo(() => {
         <img
           src={Main_Logo}
           onClick={() => {
-            navigate("/");
+            window.location.href = "/";
           }}
         />
       </div>

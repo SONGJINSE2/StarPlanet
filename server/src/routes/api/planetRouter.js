@@ -27,6 +27,7 @@ router.get("/workspace/:userId", async (req, res) => {
 // 카테고리, 멤버, 글
 // 카테고리
 router.get("/getCategory/:planetName", async (req, res) => {
+  console.log("req.params : ", req.params);
   const { planetName } = req.params;
   const _Name = planetName;
 
@@ -34,6 +35,7 @@ router.get("/getCategory/:planetName", async (req, res) => {
     // 행성 이름을 활용한 카테고리 탐색
     // 하나의 row만 탐색
     const planets = await Planet.findOne({ name: _Name });
+    console.log("planets : ", planets);
     // 카테고리 res.send에 담아서 전송
     res
       .status(200)
@@ -56,7 +58,7 @@ router.get("/getMembers/:planetName", async (req, res) => {
     // member 배열에 대한 유저 스키마 검색
     const searchedArr = await User.find({ _id: memberArr });
     // 해당 멤버의 이름 배열로 저장
-    const memberNameArr = await searchedArr.map(row => row.username);
+    const memberNameArr = await searchedArr.map((row) => row.username);
     // 멤버 이름 res.send에 담아서 전송
     res.status(200).send({ nameArr: memberNameArr });
   } catch (error) {
@@ -80,7 +82,7 @@ router.get("/:user/:planet", async (req, res) => {
     res.status(200).send({
       planet: planet,
       diary: planet.category.Diary,
-      album: planet.category.Album
+      album: planet.category.Album,
     });
   } catch (error) {
     console.error(error);
@@ -104,12 +106,13 @@ router.post("/create", async (req, res) => {
     // 해당 멤버 탐색
     const exMember = await User.find({ userID: member });
     // 해당 멤버의 id 배열로 저장
-    const memberIdArr = await exMember.map(row => row.id);
+    const memberIdArr = await exMember.map((row) => row.id);
+    console.log("memberIdArr : ", memberIdArr);
     // 행성 생성 모델 작성
     const newPlanet = await new Planet({
       name: name,
       select: select,
-      member: memberIdArr
+      member: memberIdArr,
     });
     // 행성 생성 로직 작성
     newPlanet.save((err, planetInfo) => {
@@ -128,12 +131,12 @@ router.post("/create", async (req, res) => {
 });
 
 // 전체 행성조회
-router.get("/", function(req, res, next) {
+router.get("/", function (req, res, next) {
   Planet.find()
-    .then(r => {
+    .then((r) => {
       res.status(200).send({ success: true, msg: r });
     })
-    .catch(e => {
+    .catch((e) => {
       res.status(500).send({ msg: e.message });
     });
 });
@@ -142,28 +145,30 @@ router.get("/", function(req, res, next) {
 router.put("/:_id", (req, res) => {
   const _id = req.params._id;
   Planet.updateOne({ _id }, { $set: req.body })
-    .then(r => {
+    .then((r) => {
       res.status(200).send({ success: true, msg: r });
     })
-    .catch(e => {
+    .catch((e) => {
       res.status(500).send({ msg: e.message });
     });
 });
 
 // 행성 삭제
-router.delete("/:_id", (req, res) => {
-  const _id = req.params._id;
-  Planet.deleteOne({ _id })
-    .then(r => {
+router.delete("/:user/:planet", async (req, res) => {
+  const { user, planet } = req.params;
+  const userInfo = await User.findOne({ userID: user });
+
+  await Planet.deleteOne({ name: planet, member: userInfo.id })
+    .then((r) => {
       res.status(200).send({ success: true, msg: r });
     })
-    .catch(e => {
+    .catch((e) => {
       res.status(500).send({ msg: e.message });
     });
 });
 
 // error handler
-router.all("*", function(req, res, next) {
+router.all("*", function (req, res, next) {
   next(createError(404, "no API"));
 });
 

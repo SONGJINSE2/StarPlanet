@@ -14,6 +14,7 @@ import StarBorder from "@mui/icons-material/StarBorder";
 import FaceIcon from "@mui/icons-material/Face";
 import LanguageIcon from "@mui/icons-material/Language";
 import ListIcon from "@mui/icons-material/List";
+import store from "../../../store";
 
 const style = {
   position: "absolute",
@@ -30,19 +31,31 @@ const style = {
 };
 
 export default function BasicModal() {
+  let metaData = localStorage.getItem("userInfo");
+  let userInfo = JSON.parse(metaData);
+
   const [open, setOpen] = React.useState(false);
+  const [isEdit, setIsEdit] = React.useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [open2, setOpen2] = React.useState(true);
-
-  const handleClick = () => {
-    setOpen2(!open2);
+  const editHandler = () => {
+    console.log("dd");
+    setIsEdit(true);
   };
 
   return (
     <div>
-      <Button onClick={handleOpen}>환경설정</Button>
+      <Button
+        onClick={handleOpen}
+        sx={{
+          color: "black",
+          fontSize: "15px",
+        }}
+      >
+        마이페이지
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -51,7 +64,7 @@ export default function BasicModal() {
       >
         <Box sx={style}>
           <div className="modalContainer">
-            <div className="modalBox1">환경설정</div>
+            <div className="modalBox1">마이페이지</div>
             <div className="modalBox2">
               <div className="modalBox3">
                 <List
@@ -84,7 +97,10 @@ export default function BasicModal() {
                       }}
                     />
                   </ListItemButton>
-                  <ListItemButton>
+
+                  {
+                    //? 테마버튼
+                    /* <ListItemButton>
                     <ListItemIcon
                       style={{
                         justifyContent: "flex-start",
@@ -103,8 +119,12 @@ export default function BasicModal() {
                         marginLeft: "15px",
                       }}
                     />
-                  </ListItemButton>
-                  <ListItemButton onClick={handleClick}>
+                  </ListItemButton> */
+                  }
+
+                  {
+                    //? 카테고리
+                    /* <ListItemButton onClick={handleClick}>
                     <ListItemIcon
                       style={{
                         justifyContent: "flex-start",
@@ -124,8 +144,8 @@ export default function BasicModal() {
                       }}
                     />
                     {open2 ? <ExpandLess /> : <ExpandMore />}
-                  </ListItemButton>
-                  <Collapse in={open2} timeout="auto" unmountOnExit>
+                  </ListItemButton> */
+                    /* <Collapse in={open2} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       <ListItemButton sx={{ pl: 4 }}>
                         <ListItemIcon
@@ -148,7 +168,8 @@ export default function BasicModal() {
                         />
                       </ListItemButton>
                     </List>
-                  </Collapse>
+                  </Collapse> */
+                  }
                 </List>
               </div>
               <div className="modalBox4">
@@ -157,7 +178,15 @@ export default function BasicModal() {
                   <input
                     className="modalInput"
                     disabled
-                    value="res.data.userID"
+                    value={userInfo.userID}
+                  ></input>
+                </div>
+                <div className="modalInputBox">
+                  <div className="modalInputTitle">성명</div>
+                  <input
+                    className="modalInput"
+                    disabled
+                    value={userInfo.username}
                   ></input>
                 </div>
                 <div className="modalInputBox">
@@ -165,7 +194,7 @@ export default function BasicModal() {
                   <input
                     className="modalInput"
                     disabled
-                    value="res.data.password"
+                    value="*****************"
                   ></input>
                 </div>
                 <div className="modalInputBox">
@@ -173,11 +202,13 @@ export default function BasicModal() {
                   <input
                     className="modalInput"
                     disabled
-                    value="res.data.email"
+                    value={userInfo.email}
                   ></input>
                 </div>
                 <div className="modalModifyBtnBox">
-                  <button className="modalModifyBtn">수정하기</button>
+                  <button className="modalModifyBtn" onClick={editHandler}>
+                    수정하기
+                  </button>
                 </div>
               </div>
             </div>

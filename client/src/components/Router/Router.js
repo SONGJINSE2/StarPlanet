@@ -191,9 +191,18 @@ const Router = () => {
               <Route path=":planet/:category/:postId" element={<DiaryMain />} />
             </Route>
             <Route path="/workspace/main" element={<WorkSpaceMain />}></Route>
-            <Route path="/workspace/create" element={<MakePlanetPage />}></Route>
-            <Route path="/album/main" element={<AlbumMain />}></Route>
-            <Route path="/album/individual" element={<AlbumIndividual />}></Route>
+            <Route
+              path="/workspace/create"
+              element={<MakePlanetPage />}
+            ></Route>
+            <Route
+              path="/album/main/:planet/:category"
+              element={<AlbumMain />}
+            ></Route>
+            <Route
+              path="/album/individual"
+              element={<AlbumIndividual />}
+            ></Route>
             <Route path="/aboutUs" element={<AboutUs />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="*" element={<Page404 />} />

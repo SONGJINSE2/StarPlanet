@@ -18,8 +18,10 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Avatar from "@mui/material/Avatar";
 
 import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
 const MemberBox = () => {
+  const params = useParams();
   const [open, setOpen] = useState(true);
   const [userArr, setUserArr] = useState([]);
   const handleClick = () => {
@@ -31,7 +33,7 @@ const MemberBox = () => {
       await axios({
         // 해당 행성에 대한 해당 카테고리의 다이어리들 불러오기
         // 행성과 카테고리 파라미터로 전달
-        url: `http://localhost:8000/api/planet/getMembers/${planetName}`,
+        url: `${process.env.REACT_APP_URL}/api/planet/getMembers/${planetName}`,
         method: "get",
         header: {
           withCredentials: true,
@@ -43,7 +45,7 @@ const MemberBox = () => {
         })
         .catch((err) => console.log(err.response.data));
     }
-    getMember("새행성");
+    getMember(params.planet);
   }, []);
 
   return (

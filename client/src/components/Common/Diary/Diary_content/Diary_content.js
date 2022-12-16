@@ -18,7 +18,7 @@ const Diary_content = ({ title, date, writer, content }) => {
       }
     }
     setContentArr(arr2);
-    // 날자 문자열 화
+    // 날짜 문자열 화
     let d = new Date(date);
     let dstr = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() + 1} `;
     setDateStr(dstr);

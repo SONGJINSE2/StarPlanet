@@ -18,9 +18,9 @@ const ResetPw1Page = () => {
   const handleForm = (e) => {
     axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/resetPW1",
+      url: process.env.REACT_APP_URL + "/api/auth/resetPW1",
       header: { withCredentials: true },
-      data: { userID: userID, username: username, email: email }
+      data: { userID: userID, username: username, email: email },
     })
       .then((res) => {
         console.log(res.data);
@@ -40,7 +40,7 @@ const ResetPw1Page = () => {
         <img
           src={Main_Logo}
           onClick={() => {
-            navigate("/");
+            window.location.href = "/";
           }}
         />
       </div>

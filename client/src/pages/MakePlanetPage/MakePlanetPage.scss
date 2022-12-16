@@ -17,6 +17,12 @@
     justify-content: center;
     margin-bottom: 2rem;
   }
+  .MakeMemberBtnBox {
+    display: flex;
+    justify-content: end;
+    height: 50px;
+    margin: 2px;
+  }
 }
 
 @media (max-width: 787px) {

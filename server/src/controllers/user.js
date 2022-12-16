@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-const secret = require("../../config/default").secretOrKey;
+const secret = require("../default").secretOrKey;
 
 exports.createUser = async (req, res) => {
   const { userID, username, email, hashedPW } = req.body;

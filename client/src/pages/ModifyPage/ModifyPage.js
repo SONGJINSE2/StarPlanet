@@ -6,7 +6,7 @@ import ModifyInput from "../../components/Common/ModifyInfo/ModifyInput";
 import ModifyHeader from "../../components/Common/ModifyInfo/ModifyHeader";
 import ModifyButton from "../../components/Common/ModifyInfo/ModifyButton";
 import axios from "axios";
-axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
+axios.defaults.headers.common["Authorization"] = localStorage.getItem("token");
 
 const ModifyPage = () => {
   const [userID, setuserID] = useState("data.userID");
@@ -19,13 +19,17 @@ const ModifyPage = () => {
 
   const confirmModify = () => {
     axios
-      .post("http://localhost:8000/api/user/", {
-        headers: { withCredentials: true }
-      }, {
-        userID: userID,
-        email: email,
-        username: username
-      })
+      .post(
+        process.env.REACT_APP_URL + "/api/user/",
+        {
+          headers: { withCredentials: true },
+        },
+        {
+          userID: userID,
+          email: email,
+          username: username,
+        }
+      )
       .then((res) => console.log(res.data));
   };
   return (

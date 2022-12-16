@@ -18,7 +18,7 @@ const FindIdPage = () => {
   const handleForm = () => {
     axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/findID",
+      url: process.env.REACT_APP_URL + "/api/auth/findID",
       header: { withCredentials: true },
       data: { username: username, email: email },
     })
@@ -42,7 +42,7 @@ const FindIdPage = () => {
         <img
           src={Main_Logo}
           onClick={() => {
-            navigate("/");
+            window.location.href = "/";
           }}
         />
       </div>

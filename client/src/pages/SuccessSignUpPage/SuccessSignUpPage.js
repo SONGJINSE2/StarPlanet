@@ -14,7 +14,7 @@ const SuccessSignUpPage = () => {
         <img
           src={Main_Logo}
           onClick={() => {
-            navigate("/");
+            window.location.href = "/";
           }}
         />
       </div>

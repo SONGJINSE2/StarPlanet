@@ -39,7 +39,7 @@ const SearchBar = () => {
         });
       });
     });
-  });
+  }, []);
   return (
     <div className="search">
       <div className="icon">

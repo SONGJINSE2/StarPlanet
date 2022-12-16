@@ -2,7 +2,7 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import "./MakeMemberBtn.scss";
 
-export default function MakeMemberBtn({ onClick }) {
+export default function MakeMemberBtn({ onClick, title }) {
   return (
     <div className="MakeMemberBtnBox">
       <Button
@@ -12,7 +12,7 @@ export default function MakeMemberBtn({ onClick }) {
         }}
         onClick={onClick}
       >
-        등록
+        {title}
       </Button>
     </div>
   );

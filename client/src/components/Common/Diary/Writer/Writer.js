@@ -39,7 +39,7 @@ const Writer = () => {
 
     await axios({
       method: "post",
-      url: `http://localhost:8000/api/diary/writePost`,
+      url: `${process.env.REACT_APP_URL}/api/diary/writePost`,
       header: {
         withCredentials: true,
         Authorization: localStorage.getItem("token"),

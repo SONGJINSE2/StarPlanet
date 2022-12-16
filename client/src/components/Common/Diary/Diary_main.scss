@@ -1,5 +1,5 @@
 .mainBackWrapper {
-  padding-top: 5rem;
+  // padding-top: 5rem;
 
   .Main_wrapper {
     width: 70rem;
@@ -84,12 +84,25 @@
     border-bottom: 1px solid #f4f3f3;
     justify-content: space-between;
   }
+  .Delete_planet_box {
+    position: relative;
+    height: 30px;
+    width: 80px;
+    text-align: center;
+    background-color: rgb(19, 12, 126);
+    left: 85%;
+    border-radius: 10px 10px 10px 10px;
+  }
+  .Delete_planet {
+    color: #fff;
+  }
 }
 
 .dairyPaginationWrapper {
   padding: 20px;
 }
 
+/*
 @media (max-width: 1150px) {
   .mainBackWrapper {
     display: flex;
@@ -180,6 +193,18 @@
       box-sizing: border-box;
       border-bottom: 1px solid #f4f3f3;
       justify-content: space-between;
+    }
+    .Delete_planet_box {
+      position: relative;
+      height: 30px;
+      width: 80px;
+      text-align: center;
+      background-color: rgb(19, 12, 126);
+      left: 80%;
+      border-radius: 10px 10px 10px 10px;
+    }
+    .Delete_planet {
+      color: #fff;
     }
   }
 
@@ -278,6 +303,19 @@
       border-bottom: 1px solid #f4f3f3;
       justify-content: space-between;
     }
+    .Delete_planet_box {
+      position: relative;
+      bottom: 20px;
+      height: 30px;
+      width: 80px;
+      text-align: center;
+      background-color: rgb(19, 12, 126);
+      left: 65%;
+      border-radius: 10px 10px 10px 10px;
+    }
+    .Delete_planet {
+      color: #fff;
+    }
   }
 
   .dairyPaginationWrapper {
@@ -286,3 +324,4 @@
     padding: 20px;
   }
 }
+*/

@@ -64,11 +64,13 @@
 .modalModifyBtnBox {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 10rem;
 }
 .modalModifyBtn {
   width: 4.5rem;
   height: 2.2rem;
-  margin-top: 12rem;
+
   border-radius: 12% 12% / 12% 12%;
   color: #fff;
   border: solid 1px rgba(55, 54, 54, 0.721);

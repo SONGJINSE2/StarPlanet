@@ -31,6 +31,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const Category = observer(({ sx }) => {
   let params = useParams();
+  console.log("params : ", params);
   let navigate = useNavigate();
   const { planet, category } = params;
   const { planetClass } = store;
@@ -45,7 +46,7 @@ const Category = observer(({ sx }) => {
       // 이름과 행성을 파라미터로 전달하여 카테고리를 받는다.
       await axios({
         method: "get",
-        url: `http://localhost:8000/api/planet/getCategory/${planetName}`,
+        url: `${process.env.REACT_APP_URL}/api/planet/getCategory/${planetName}`,
         header: {
           withCredentials: true,
           Authorization: localStorage.getItem("token"),
@@ -73,7 +74,9 @@ const Category = observer(({ sx }) => {
   return (
     <List sx={sx} component="nav">
       {/* 사진첩 */}
-      <ListItemButton onClick={() => navigate("/album/main")}>
+      <ListItemButton
+        onClick={() => navigate(`/album/main/${planet}/${category}`)}
+      >
         <ListItemIcon
           sx={{ color: "#0D0783", minWidth: "45px", fontSize: "20px" }}
         >

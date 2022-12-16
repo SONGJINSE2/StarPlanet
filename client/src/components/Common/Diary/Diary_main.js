@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Diary_main.scss";
 import Diary_content from "../../Common/Diary/Diary_content/Diary_content";
 import Planet_name from "../../Common/Diary/Planet_name/Planet_name";
@@ -13,11 +14,15 @@ import Pagination from "@mui/material/Pagination";
 
 import { Link, useParams } from "react-router-dom";
 
+import $ from "jquery";
+
 // MOCK 데이터
 import DATA from "./data.js";
 import axios from "axios";
+import { remove } from "mobx";
 
 const Diary_main = ({ planetTitle }) => {
+  const navigate = useNavigate();
   const params = useParams();
   const { planet, category } = params;
   let [page, setPage] = useState(1);
@@ -30,6 +35,11 @@ const Diary_main = ({ planetTitle }) => {
   // skeleton 처리 필요
   const _DATA = usePagination(data, PER_PAGE);
 
+  // *************************************
+  $("body").addClass("no_scroll");
+
+  // *************************************
+
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
@@ -37,7 +47,7 @@ const Diary_main = ({ planetTitle }) => {
   useEffect(() => {
     axios({
       method: "get",
-      url: `http://localhost:8000/api/diary/getPosts/${planet}/${category}`,
+      url: `${process.env.REACT_APP_URL}/api/diary/getPosts/${planet}/${category}`,
       header: {
         withCredentials: true,
         Authorization: localStorage.getItem("token"),
@@ -48,6 +58,22 @@ const Diary_main = ({ planetTitle }) => {
       })
       .catch((err) => console.log(err.response.data));
   }, []);
+
+  const Delete_planet_btn = () => {
+    console.log("행성삭제");
+    let metaData = localStorage.getItem("userInfo");
+    let userInfo = JSON.parse(metaData);
+    axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_URL}/api/planet/${userInfo.userID}/${planet}`,
+      header: {
+        withCredentials: true,
+      },
+    }).then((res) => {
+      console.log(res);
+      navigate("/workspace/main");
+    });
+  };
 
   return (
     <div className="mainBackWrapper">
@@ -76,6 +102,7 @@ const Diary_main = ({ planetTitle }) => {
                 }}
               />
             </div>
+
             <div>
               <MemberBox />
             </div>
@@ -86,6 +113,7 @@ const Diary_main = ({ planetTitle }) => {
             </div>
             <div className="Diary_main_box">
               {_DATA.currentData().map((e, i) => {
+                console.log(e);
                 return (
                   <Link to={`/diary/read/${planet}/${category}/${e._id}`}>
                     <Diary_content
@@ -111,6 +139,11 @@ const Diary_main = ({ planetTitle }) => {
                   ul: { justifyContent: "center" },
                 }}
               />
+            </div>
+            <div className="Delete_planet_box">
+              <button className="Delete_planet" onClick={Delete_planet_btn}>
+                행성삭제
+              </button>
             </div>
           </div>
         </div>

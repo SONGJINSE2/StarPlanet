@@ -26,7 +26,7 @@ class User {
   userLogin = async (user) => {
     await axios({
       method: "get",
-      url: `http://localhost:8000/api/planet/workspace/${user}`,
+      url: `${process.env.REACT_APP_URL}/api/planet/workspace/${user}`,
       header: {
         withCredentials: true,
         Authorization: localStorage.getItem("token"),

@@ -7,7 +7,8 @@ import "swiper/css"; //basic
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 // 컴포넌트
-import Planet from "../../../../assets/img/WorkSpace/Planets/planet_2.png";
+import Planet1 from "../../../../assets/img/Planet/planet1.png";
+
 import NewPlanetBtn from "../NewPlanetBtn/NewPlanetBtn";
 // 라우팅
 import { Link } from "react-router-dom";
@@ -28,7 +29,7 @@ const Main = observer(() => {
     async function fetchAndSetUser(user) {
       await axios({
         method: "get",
-        url: `http://localhost:8000/api/planet/workspace/${user}`,
+        url: `${process.env.REACT_APP_URL}/api/planet/workspace/${user}`,
         header: {
           withCredentials: true,
           Authorization: localStorage.getItem("token"),
@@ -36,6 +37,7 @@ const Main = observer(() => {
       })
         .then((res) => {
           setData(res.data.planets);
+          console.log("바보", res.data.planets);
         })
         .catch((err) => console.log(err.response.data));
     }
@@ -60,6 +62,7 @@ const Main = observer(() => {
       >
         {data?.length != 0 ? (
           data?.map((e) => {
+            console.log(e.select);
             let date = new Date(e.createdAt);
             return (
               <SwiperSlide>
@@ -80,7 +83,10 @@ const Main = observer(() => {
                       </div>
                     </div>
                   </Link>
-                  <img className="planet" src={Planet} />
+                  <img
+                    className="planet"
+                    src={`/Planet/planet${e.select}.png`}
+                  />
                 </div>
               </SwiperSlide>
             );
@@ -102,7 +108,7 @@ const Main = observer(() => {
                   </div>
                 </div>
               </Link>
-              <img className="planet" src={Planet} />
+              <img className="planet" src={Planet1} />
             </div>
           </SwiperSlide>
         )}

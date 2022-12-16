@@ -22,6 +22,8 @@ import axios from "axios";
 import DATA from "./data.js";
 
 import { useParams, useNavigate } from "react-router-dom";
+import Modify from "../Modify/Modify";
+import { alertClasses } from "@mui/material";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -44,17 +46,22 @@ const CssTextField = styled(TextField)({
 });
 
 const Read = () => {
+  const navigate = useNavigate();
   const params = useParams();
   // 파라미터
+
   const { planet, category, postId } = params;
   // 댓글 input 값
   const [commentValue, setCommentValue] = useState("");
+  const [isEdit, setIsEdit] = useState(false);
   // axios 데이터
   const [data, setData] = useState({
     post: {},
     comment: [],
     writer: "",
   });
+  const [post, setPost] = useState({});
+  const [comments, setComments] = useState([]);
   let userInfo = localStorage.getItem("userInfo");
   let arr = JSON.parse(userInfo);
   const parse = require("html-react-parser");
@@ -62,28 +69,31 @@ const Read = () => {
   useEffect(() => {
     axios({
       method: "get",
-      url: `http://localhost:8000/api/diary/getPost/${postId}`,
+      url: `${process.env.REACT_APP_URL}/api/diary/getPost/${postId}`,
       header: {
         withCredentials: true,
         Authorization: localStorage.getItem("token"),
       },
     }).then((res) => {
-      setData({
-        post: res.data.post,
-        comments: res.data.comments,
-      });
-      console.log(data);
+      setPost(res.data.post);
+      setComments(res.data.comments);
+      console.log(res.data);
     });
   }, []);
+
+  useEffect(() => {
+    setIsEdit(false);
+  }, [post]);
 
   const handleChange = (e) => {
     setCommentValue(e.target.value);
   };
 
+  //! 댓글 작성 로직
   const onClickCommentWrite = () => {
     axios({
       method: "post",
-      url: `http://localhost:8000/api//diary/PostComment`,
+      url: `${process.env.REACT_APP_URL}/api/diary/postComment`,
       header: {
         withCredentials: true,
         Authorization: localStorage.getItem("token"),
@@ -95,15 +105,38 @@ const Read = () => {
       },
     }).then((res) => {
       if (res.status === 201) {
-        window.location.reload();
+        setComments([...comments, res.data.commentInfo]);
+        setCommentValue("");
+      }
+    });
+  };
+  //! 댓글 삭제 로직
+  const onClickCommentDelete = () => {
+    axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_URL}/api/diary/deleteComment`,
+      header: {
+        withCredentials: true,
+        Authorization: localStorage.getItem("token"),
+      },
+      data: {
+        postId: postId,
+        comment: commentValue,
+      },
+    }).then((res) => {
+      if (res.status === 200) {
+        alert("댓글이 삭제되었습니다.");
+        // setComments(res.data.comment);
+        //? 삭제되는 것 확인했으나 화면은 위에껏만 사라지고 보이지도 않음
       }
     });
   };
 
+  //! 게시글 삭제 로직
   const onClickPostDelete = () => {
     axios({
       method: "delete",
-      url: `http://localhost:8000/api//diary/deletePost`,
+      url: `${process.env.REACT_APP_URL}/api/diary/deletePost`,
       header: {
         withCredentials: true,
         Authorization: localStorage.getItem("token"),
@@ -113,7 +146,12 @@ const Read = () => {
       },
     }).then((res) => {
       console.log(res);
+      navigate(`/diary/main/${planet}/${category}`);
     });
+  };
+
+  const onClickPostEdit = () => {
+    setIsEdit(true);
   };
 
   return (
@@ -137,84 +175,98 @@ const Read = () => {
               <MemberBox />
             </div>
           </div>
-          {/* 메인 컨텐츠 */}
-          <div className="Main_box">
-            <div className="diaryReaderWrapper">
-              {/* 맨위 */}
-              <div className="diaryReaderTopContainer">
-                <div className="diaryReaderChoiced">{category}</div>
-                <div className="diaryReaderTitle">{data.post.title}</div>
-              </div>
-              {/* 작성자 */}
-              <div className="diaryReaderWriterWrapper">
-                <ListItem sx={{ paddingLeft: "0" }}>
-                  <ListItemIcon sx={{ minWidth: "40px" }}>
-                    <Avatar sx={{ width: 30, height: 30 }} />
-                  </ListItemIcon>
-                  <ListItemText primary={data?.post?._user?.username} />
-                </ListItem>
-                <span>
-                  <IconButton component="label">
-                    <AiTwotoneEdit />
-                  </IconButton>
-                  <IconButton onClick={onClickPostDelete} component="label">
-                    <AiTwotoneDelete />
-                  </IconButton>
-                </span>
-              </div>
-              <div className="diaryReaderContent">
-                {/* string to html */}
-                {parse(data.post.content ? data.post.content : "")}
-              </div>
-              <div className="diaryReaderCommentWrapper">
-                <div className="diaryReaderCommentTitle">수다수다</div>
-                <div className="diaryReaderCommentContainer">
-                  {/* 댓글 */}
-                  {/* 댓글 작성 로직 작성 후 수정 */}
-                  {data?.comments?.map((e) => {
-                    return (
-                      <div className="diaryReaderCommentBox">
-                        <div className="diaryReaderCommentWriter">
-                          {e.writer}
-                        </div>
-                        <div className="diaryReaderCommentContent">
-                          {e.content}
-                        </div>
-                      </div>
-                    );
-                  })}
+          {!isEdit ? (
+            <div className="Main_box">
+              <div className="diaryReaderWrapper">
+                {/* 맨위 */}
+                <div className="diaryReaderTopContainer">
+                  <div className="diaryReaderChoiced">{category}</div>
+                  <div className="diaryReaderTitle">{post.title}</div>
                 </div>
-              </div>
-              {/* 댓글 작성창 */}
-              <div className="diaryReaderEditorWrapper">
-                <CssTextField
-                  sx={{ width: "100%" }}
-                  label="댓글 작성"
-                  multiline
-                  rows={4}
-                  value={commentValue}
-                  onChange={handleChange}
-                  variant="filled"
-                />
-                <div className="diaryReaderBtnWrapper">
-                  <Button
-                    sx={{
-                      backgroundColor: "#0D0D7E",
-                      "&:hover": {
-                        backgroundColor: "#fff",
-                        color: "#3c52b2",
-                      },
-                    }}
-                    variant="contained"
-                    endIcon={<FaPlay />}
-                    onClick={onClickCommentWrite}
-                  >
-                    등록
-                  </Button>
+                {/* 작성자 */}
+                <div className="diaryReaderWriterWrapper">
+                  <ListItem sx={{ paddingLeft: "0" }}>
+                    <ListItemIcon sx={{ minWidth: "40px" }}>
+                      <Avatar sx={{ width: 30, height: 30 }} />
+                    </ListItemIcon>
+                    <ListItemText primary={post?._user?.username} />
+                  </ListItem>
+                  <span>
+                    <IconButton onClick={onClickPostEdit} component="label">
+                      <AiTwotoneEdit />
+                    </IconButton>
+                    <IconButton onClick={onClickPostDelete} component="label">
+                      <AiTwotoneDelete />
+                    </IconButton>
+                  </span>
+                </div>
+                <div className="diaryReaderContent">
+                  {/* string to html */}
+                  {parse(post.content ? post.content : "")}
+                </div>
+                <div className="diaryReaderCommentWrapper">
+                  <div className="diaryReaderCommentTitle">수다수다</div>
+                  <div className="diaryReaderCommentContainer">
+                    {/* 댓글 */}
+                    {/* 댓글 작성 로직 작성 후 수정 */}
+                    {comments?.map((e) => {
+                      return (
+                        <div className="diaryReaderCommentBox">
+                          <div className="diaryReaderCommentWriter">
+                            {e.writer}
+                          </div>
+                          <div className="diaryReaderCommentContent">
+                            {e.content}
+                            <div>
+                              <button className="diaryReaderCommentEdit">
+                                수정
+                              </button>
+                              <button
+                                className="diaryReaderCommentDelete"
+                                onClick={onClickCommentDelete}
+                              >
+                                삭제
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                {/* 댓글 작성창 */}
+                <div className="diaryReaderEditorWrapper">
+                  <CssTextField
+                    sx={{ width: "100%" }}
+                    label="댓글 작성"
+                    multiline
+                    rows={4}
+                    value={commentValue}
+                    onChange={handleChange}
+                    variant="filled"
+                  />
+                  <div className="diaryReaderBtnWrapper">
+                    <Button
+                      sx={{
+                        backgroundColor: "#0D0D7E",
+                        "&:hover": {
+                          backgroundColor: "#fff",
+                          color: "#3c52b2",
+                        },
+                      }}
+                      variant="contained"
+                      endIcon={<FaPlay />}
+                      onClick={onClickCommentWrite}
+                    >
+                      댓글등록
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <Modify post={post} setPost={setPost} />
+          )}
         </div>
       </div>
     </div>

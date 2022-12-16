@@ -35,7 +35,7 @@ const LoginPage = observer(() => {
     }
     axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/login",
+      url: process.env.REACT_APP_URL + "/api/auth/login",
       header: { withCredentials: true },
       data: { userID: userID, hashedPW: hashedPW },
     })
@@ -60,7 +60,7 @@ const LoginPage = observer(() => {
           <img
             src={Main_Logo}
             onClick={() => {
-              navigate("/");
+              window.location.href = "/";
             }}
           />
         </div>
@@ -97,19 +97,19 @@ const LoginPage = observer(() => {
               <div className="socialBtn">
                 <SocialBtn
                   src={Naver_Btn}
-                  href={"http://localhost:8000/api/auth/naver"}
+                  href={process.env.REACT_APP_URL + "/api/auth/naver"}
                 />
                 <SocialBtn
                   src={Kakao_Btn}
-                  href={"http://localhost:8000/api/auth/kakao"}
+                  href={process.env.REACT_APP_URL + "/api/auth/kakao"}
                 />
                 <SocialBtn
                   src={Google_Btn}
-                  href={"http://localhost:8000/api/auth/google"}
+                  href={process.env.REACT_APP_URL + "/api/auth/google"}
                 />
                 <SocialBtn
                   src={Github_Btn}
-                  href={"http://localhost:8000/api/auth/github"}
+                  href={process.env.REACT_APP_URL + "/api/auth/github"}
                 />
               </div>
             </div>

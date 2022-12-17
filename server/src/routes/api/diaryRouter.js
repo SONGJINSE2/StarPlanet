@@ -5,11 +5,31 @@ const Planet = require("../../models/Planet");
 const { Diary, Comment } = require("../../models/Diary");
 
 const passport = require("passport");
-// 댓글 삭제
-router.delete("/deleteComment", async (req, res) => {
-  const { postId } = req.body;
+
+//! 댓글 수정
+router.patch("/editComment", async (req, res) => {
+  const { comment, commentId } = req.body;
+  const _id = commentId;
   try {
-    await Comment.deleteOne({ _diary: postId });
+    Comment.findByIdAndUpdate(
+      _id,
+      { $set: { content: comment } },
+      { new: true }
+    ).then((c) => {
+      console.log("c : ", c);
+      res.status(201).json({ success: "댓글수정성공", newComment: c });
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+//! 댓글 삭제
+router.delete("/deleteComment", async (req, res) => {
+  const { postId, commentId } = req.body;
+  try {
+    await Comment.deleteOne({ _diary: postId, _id: commentId });
     res.status(200).send("success");
   } catch (error) {
     console.log(error);
@@ -19,9 +39,7 @@ router.delete("/deleteComment", async (req, res) => {
 
 // 댓글 작성하기
 router.post("/postComment", async (req, res) => {
-  // body로 값 받아오기
   const { postId, comment, writer } = req.body;
-  // 값 할당
   const data = {
     postId: postId,
     comment: comment,
@@ -56,8 +74,10 @@ router.get("/getPost/:postId", async (req, res) => {
   const _PostId = postId;
   try {
     // 게시글 objectId 값으로 검색
+    // Select * from Diary where _id: _PostId limit 1;
     const getPost = await Diary.findOne({ _id: _PostId }).populate("_user");
     // 게시글의 comment 가져오기
+    // Select * from comments where _diary: _PostId;
     const comments = await Comment.find({ _diary: _PostId });
     res.status(200).send({ post: getPost, comments: comments });
   } catch (error) {
@@ -91,7 +111,7 @@ router.get("/getPosts/:planet/:category", async (req, res) => {
   }
 });
 
-// 글 작성
+//! 게시글 작성
 router.post("/writePost", async (req, res) => {
   const { planet, category, title, content, writerId } = req.body;
 

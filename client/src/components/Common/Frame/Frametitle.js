@@ -1,37 +1,36 @@
 import React from "react";
 import "./frametitle.scss";
 import Planet_name from "../Diary/Planet_name/Planet_name";
-import IconButton from "@mui/material/IconButton";
-import { FaPen } from "react-icons/fa";
-
-// 데이터 전달 컴포넌트
 import Category from "../Diary/Category/Category";
 import MemberBox from "../Diary/MemberBox/MemberBox";
 
-const Frame = ({ planetTitle, content }) => {
+const Frame = ({ planetTitle, content, topTitle }) => {
   return (
-    <div className="frameBackWrapper">
-      <div className="wrapper">
-        <div className="top">
-          <div className="planetName">
-            <Planet_name title={planetTitle} />
-          </div>
-          <div className="titleWrapper">
-            <Planet_name title={"2022"} />
-            <IconButton>
-              <FaPen />
-            </IconButton>
+    <div className="mainContainer">
+      <div className="mainWrapperLeft">
+        <div className="mainLeftTop">
+          <Planet_name title={planetTitle} />
+        </div>
+        <div className="mainLeftBottom">
+          <Category
+            sx={{
+              width: "100%",
+              maxWidth: "40rem",
+              bgcolor: "background.paper",
+            }}
+          />
+          <div>
+            <MemberBox />
           </div>
         </div>
-        <div className="mainContainer">
-          <div className="categoryWrapper">
-            <div>
-              <Category />
-            </div>
-            <div>
-              <MemberBox />
-            </div>
+      </div>
+      <div className="mainWrapperRight">
+        <div className="mainRightTop">
+          <div className="mainRightTop_content">
+            <Planet_name title={topTitle} />
           </div>
+        </div>
+        <div className="mainRightBottom">
           <div className="contentWrapper">{content}</div>
         </div>
       </div>

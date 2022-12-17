@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import "./MakePlanetPage.scss";
 import Headers from "../../components/Common/Diary/Header/Header";
-import StarMap from "./StarMap";
+import StarMap from "../../components/Common/StarMap/StarMap";
 import MakePlanetInput from "../../components/Common/MakePlanet/MakePlanetInput";
 import MakePlanetSelect from "../../components/Common/MakePlanet/MakePlanetSelect";
 import MakePlanetSelectHeader from "../../components/Common/MakePlanet/MakePlanetSelectHeader";
@@ -14,6 +14,7 @@ import MakePlanetMember from "../../components/Common/MakePlanet/MakePlanetMembe
 import MakeMember from "../../components/Common/MakePlanet/MakeMember";
 import MakeMemberBtn from "../../components/Common/MakePlanet/MakeMemberBtn";
 import axios from "axios";
+import $ from "jquery";
 axios.defaults.headers.common["Authorization"] = localStorage.getItem("token");
 
 const MakePlanetPage = () => {
@@ -31,8 +32,13 @@ const MakePlanetPage = () => {
   const [planetSelect, setplanetSelect] = useState(null);
   const [prevClick, setprevClick] = useState(null);
 
+  // *************************************
+  $("body").addClass("no_scroll");
+  // *************************************
+
   //! 버튼 클릭시 눌린 버튼 상태 변화
   const GetClick = (e) => {
+    console.log(e.target.id);
     setplanetSelect(e.target.id);
   };
 
@@ -63,6 +69,12 @@ const MakePlanetPage = () => {
       alert("행성 이미지를 선택해주세요.");
       return;
     }
+
+    if (planetName.includes("?")) {
+      alert("행성이름에 특수문자는 사용할 수 없습니다");
+      return;
+    }
+
     // userArr 빈 값 제거 배열 생성
     let userArr = [user.user_1, user.user_2, user.user_3, user.user_4].filter(
       function (item) {
@@ -79,7 +91,6 @@ const MakePlanetPage = () => {
       },
       data: {
         name: planetName,
-        // 멤버를 배열의 형태로 보냄
         member: userArr,
         select: planetSelect,
       },
@@ -101,7 +112,7 @@ const MakePlanetPage = () => {
 
   return (
     <div className="">
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap"} />
       <Headers />
       <div className="makePlanetSection">
         <div className="makePlanetContainer">
@@ -114,25 +125,25 @@ const MakePlanetPage = () => {
           <MakePlanetSelectHeader value={"행성선택"} />
           <div className="planetBox">
             <MakePlanetSelect
-              id={Planet1}
+              id="1"
               value={planetSelect}
               onClick={GetClick}
               src={Planet1}
             />
             <MakePlanetSelect
-              id={Planet2}
+              id="2"
               value={planetSelect}
               onClick={GetClick}
               src={Planet2}
             />
             <MakePlanetSelect
-              id={Planet3}
+              id="3"
               value={planetSelect}
               onClick={GetClick}
               src={Planet3}
             />
             <MakePlanetSelect
-              id={Planet4}
+              id="4"
               value={planetSelect}
               onClick={GetClick}
               src={Planet4}

@@ -4,7 +4,7 @@ import "./MakeMemberBtn.scss";
 
 export default function MakeMemberBtn({ onClick, title }) {
   return (
-    <div className="MakeMemberBtnBox">
+    <div className="MakeMemberBtnBox2">
       <Button
         variant="contained"
         style={{

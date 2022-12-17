@@ -12,7 +12,6 @@ const AlbumAllMode = () => {
       <div className="content">{/* <img /> */}</div>
       <div className="content">{/* <img /> */}</div>
       <div className="content">{/* <img /> */}</div>
-      <div className="content">{/* <img /> */}</div>
     </div>
   );
 };

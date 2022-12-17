@@ -9,7 +9,7 @@ import Writer from "../../../components/Common/Diary/Writer/Writer";
 const DiaryWrite = () => {
   return (
     <div className="back">
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap_Main"} />
       <Header />
       <Writer />
     </div>

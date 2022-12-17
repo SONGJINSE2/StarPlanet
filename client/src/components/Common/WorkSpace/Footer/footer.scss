@@ -26,3 +26,21 @@
     font-size: 12px;
   }
 }
+
+@media (max-width: 500px) {
+  .btnContainer {
+    padding-bottom: 10px;
+    ul {
+      list-style: none;
+      li {
+        float: left;
+        font-size: 15px !important;
+        font-weight: bold;
+        margin-left: 27px;
+      }
+    }
+  }
+  .text {
+    font-size: 5px !important;
+  }
+}

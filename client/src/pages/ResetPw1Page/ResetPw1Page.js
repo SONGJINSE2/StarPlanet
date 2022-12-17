@@ -35,7 +35,7 @@ const ResetPw1Page = () => {
   };
   return (
     <>
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap_Main"} />
       <div className="resetPw1LogoWrapper">
         <img
           src={Main_Logo}

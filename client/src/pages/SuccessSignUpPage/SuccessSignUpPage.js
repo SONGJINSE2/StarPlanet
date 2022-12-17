@@ -9,7 +9,7 @@ const SuccessSignUpPage = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap_Main"} />
       <div className="successSignUpLogoWrapper">
         <img
           src={Main_Logo}

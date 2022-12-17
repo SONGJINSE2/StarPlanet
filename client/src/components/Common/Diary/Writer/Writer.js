@@ -107,9 +107,23 @@ const Writer = () => {
                 },
               }}
               variant="contained"
-              endIcon={<FaPlay />}
             >
               작성 완료
+            </Button>
+            <Button
+              onClick={() => {
+                navigate(-1);
+              }}
+              sx={{
+                backgroundColor: "#0D0D7E",
+                "&:hover": {
+                  backgroundColor: "#fff",
+                  color: "#3c52b2",
+                },
+              }}
+              variant="contained"
+            >
+              취소
             </Button>
           </div>
         </div>

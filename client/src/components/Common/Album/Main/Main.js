@@ -6,21 +6,22 @@ import AlbumAllMode from "../AlbumAllMode/AlbumAllMode";
 import Selector from "../Selector/Selector";
 import AlbumMode from "../AlbumMode/AlbumMode";
 const Main = () => {
-  const test = () => {
+  const writePhoto = () => {
     console.log(1);
   };
   return (
     <div className="frame">
       <div className="all">
-        <Title title={"전체사진"} count={5} onclick={test} />
-        <Selector />
+        <Title title={"전체사진"} count={5} onclick={writePhoto} />
         <AlbumAllMode />
       </div>
-      <div className="albums">
+
+      {/* 앨범모드 */}
+      {/* <div className="albums">
         <Title title={"앨범"} onclick={test} />
         <Selector />
         <AlbumMode albumTitle={"2022"} count={5} />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -33,3 +33,41 @@
   --p: 100%;
   color: #000;
 }
+
+@media (max-width: 768px) {
+  .newPlanetBtnWrapper {
+    background: linear-gradient(#fff 0 0) var(--p, 0) / var(--p, 0) no-repeat;
+    transition: 0.4s, background-position 0s;
+    border-radius: 50%;
+    color: white;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    top: 3vh;
+    left: 6vw;
+    position: absolute;
+
+    .img {
+      font-size: 100px;
+      line-height: 100px;
+      height: 100px;
+    }
+    .text {
+      font-size: 15px;
+      font-weight: bold;
+      .date {
+        font-size: 10px;
+        text-align: center;
+      }
+    }
+  }
+  .newPlanetBtnWrapper:hover {
+    --p: 100%;
+    color: #000;
+  }
+}

@@ -37,7 +37,7 @@ const FindIdPage = () => {
 
   return (
     <>
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap_Main"} />
       <div className="findIdLogoWrapper">
         <img
           src={Main_Logo}

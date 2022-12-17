@@ -102,6 +102,7 @@ router.all("*", (req, res, next) => {
 // 행성 생성
 router.post("/create", async (req, res) => {
   const { name, member, select } = req.body;
+  console.log(req.body);
   try {
     // 해당 멤버 탐색
     const exMember = await User.find({ userID: member });

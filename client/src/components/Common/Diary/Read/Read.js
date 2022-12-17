@@ -18,11 +18,10 @@ import Avatar from "@mui/material/Avatar";
 import { FaPlay } from "react-icons/fa";
 import { AiTwotoneEdit, AiTwotoneDelete } from "react-icons/ai";
 import axios from "axios";
-// MOCK 데이터
-import DATA from "./data.js";
 
 import { useParams, useNavigate } from "react-router-dom";
 import Modify from "../Modify/Modify";
+import Comment from "./Comment";
 import { alertClasses } from "@mui/material";
 
 const CssTextField = styled(TextField)({
@@ -54,6 +53,7 @@ const Read = () => {
   // 댓글 input 값
   const [commentValue, setCommentValue] = useState("");
   const [isEdit, setIsEdit] = useState(false);
+
   // axios 데이터
   const [data, setData] = useState({
     post: {},
@@ -110,26 +110,12 @@ const Read = () => {
       }
     });
   };
+
   //! 댓글 삭제 로직
-  const onClickCommentDelete = () => {
-    axios({
-      method: "delete",
-      url: `${process.env.REACT_APP_URL}/api/diary/deleteComment`,
-      header: {
-        withCredentials: true,
-        Authorization: localStorage.getItem("token"),
-      },
-      data: {
-        postId: postId,
-        comment: commentValue,
-      },
-    }).then((res) => {
-      if (res.status === 200) {
-        alert("댓글이 삭제되었습니다.");
-        // setComments(res.data.comment);
-        //? 삭제되는 것 확인했으나 화면은 위에껏만 사라지고 보이지도 않음
-      }
-    });
+  const deleteComment = (id) => {
+    let newComments = comments.filter((e) => e.id != id);
+    console.log(newComments);
+    setComments(newComments);
   };
 
   //! 게시글 삭제 로직
@@ -150,6 +136,7 @@ const Read = () => {
     });
   };
 
+  //! 게시글 수정 로직
   const onClickPostEdit = () => {
     setIsEdit(true);
   };
@@ -157,24 +144,7 @@ const Read = () => {
   return (
     <div className="mainBackWrapper">
       <div className="mainWrapper">
-        <div className="MainContainerTop">
-          <div className="Planet_name_box">
-            <Planet_name title={`${planet} 행성`} />
-          </div>
-          <div className="Modify_title_box">
-            <Planet_name title={category} />
-          </div>
-        </div>
         <div className="Main_container">
-          {/* 왼쪽 메뉴바 */}
-          <div className="Categorybar_box">
-            <div>
-              <Category />
-            </div>
-            <div>
-              <MemberBox />
-            </div>
-          </div>
           {!isEdit ? (
             <div className="Main_box">
               <div className="diaryReaderWrapper">
@@ -211,27 +181,10 @@ const Read = () => {
                     {/* 댓글 작성 로직 작성 후 수정 */}
                     {comments?.map((e) => {
                       return (
-                        <div className="diaryReaderCommentBox">
-                          <div className="diaryReaderCommentWriter">
-                            {e.writer}
-                          </div>
-                          <div className="diaryReaderCommentContent">
-                            {e.content}
-                            <div>
-                              <button className="diaryReaderCommentEdit">
-                                수정
-                              </button>
-                              <button
-                                className="diaryReaderCommentDelete"
-                                onClick={onClickCommentDelete}
-                              >
-                                삭제
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                        <Comment comment={e} deleteComment={deleteComment} />
                       );
                     })}
+                    {/* comments값을 map돌린 값을 Comment컴퍼넌트에 props 값으로 보낸다 */}
                   </div>
                 </div>
                 {/* 댓글 작성창 */}

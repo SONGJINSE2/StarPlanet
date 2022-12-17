@@ -27,6 +27,9 @@ const CommentSchema = new Schema(
     writer: { type: String, default: "" },
     _diary: { type: ObjectId, ref: "Diary", index: true },
   },
+  // comment.content
+  // comment._diary -> { 다이어리 객체 }
+  // comment._diary.title -> 다이어리의 제목을 가져온다.
   { timestamps: true, toObject: { virtuals: true }, toJSON: { virtuals: true } }
 );
 

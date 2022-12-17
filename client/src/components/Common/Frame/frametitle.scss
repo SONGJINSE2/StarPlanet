@@ -1,314 +1,175 @@
-.frameBackWrapper {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-.wrapper {
-  width: 70rem;
-  background-color: #fff;
-  border-radius: 15px;
+.mainContainer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  width: 1200px;
+  height: 1200px;
   margin: 0 auto;
-  position: relative;
 
-  .arrow {
-    width: 30px;
-    height: 30px;
-    background-color: #fff;
-    position: absolute;
-    left: 50%;
-    top: -5px;
-    transform: rotate(45deg) translateX(-50%);
-  }
-
-  .top {
+  .mainWrapperLeft {
     display: flex;
-    width: 100%;
-    height: 71px;
     justify-content: center;
-
-    .planetName {
-      display: flex;
-      width: 200px;
-      border-radius: 15px 0px 0px 0px / 15px 0px 0px 0px;
-      justify-content: center;
-      align-items: center;
-      border-bottom: 1px solid #f4f3f3;
-      border-right: 1px solid #f4f3f3;
-    }
-
-    .titleWrapper {
-      display: flex;
-      width: 902px;
-      border-radius: 0px 15px 0px 0px / 0px 15px 0px 0px;
-      align-items: center;
-      padding: 0px 62px;
-      box-sizing: border-box;
-      border-bottom: 1px solid #f4f3f3;
-      justify-content: space-between;
-    }
-  }
-
-  .mainContainer {
-    display: flex;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
     height: 100%;
+    margin: 0;
+    flex-basis: 200px;
+
+    .mainLeftTop {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 5rem;
+      background-color: rgb(255, 255, 255);
+      border: solid 1px rgb(240, 240, 240);
+      border-radius: 10px 0px 0px 0px;
+    }
+    .mainLeftBottom {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 55rem;
+      background-color: rgb(255, 255, 255);
+      border: solid 1px rgb(240, 240, 240);
+      border-radius: 0px 0px 0px 10px;
+    }
+  }
+
+  .mainWrapperRight {
+    display: flex;
     justify-content: center;
-
-    .categoryWrapper {
-      justify-content: space-between;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      width: 200px;
-      margin: 0px;
-      justify-content: space-between;
-      min-height: 619px;
-    }
-
-    .contentWrapper {
-      display: flex;
-      flex-direction: column;
-      width: 902px;
-      max-width: 902px;
-      border-radius: 0px 0px 15px 0px / 0px 0px 15px 0px;
-      border-left: 1px solid #f4f3f3;
-      padding: 20px 30px;
-    }
-  }
-}
-
-@media (max-width: 1150px) {
-  .frameBackWrapper {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-  .wrapper {
-    width: 50rem;
-    background-color: #fff;
-    border-radius: 15px;
+    align-items: center;
+    flex-direction: column;
+    width: 100px;
+    height: 100%;
     margin: 0 auto;
-    position: relative;
+    flex-basis: 1000px;
 
-    .arrow {
-      width: 30px;
-      height: 30px;
-      background-color: #fff;
-      position: absolute;
-      left: 50%;
-      top: -5px;
-      transform: rotate(45deg) translateX(-50%);
-    }
-
-    .top {
+    .mainRightTop {
       display: flex;
-      width: 100%;
-      height: 71px;
+      align-items: center;
       justify-content: center;
-
-      .planetName {
-        display: flex;
-        width: 200px;
-        border-radius: 15px 0px 0px 0px / 15px 0px 0px 0px;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid #f4f3f3;
-        border-right: 1px solid #f4f3f3;
-      }
-
-      .titleWrapper {
-        display: flex;
-        width: 902px;
-        border-radius: 0px 15px 0px 0px / 0px 15px 0px 0px;
-        align-items: center;
-        padding: 0px 62px;
-        box-sizing: border-box;
-        border-bottom: 1px solid #f4f3f3;
-        justify-content: space-between;
+      width: 100%;
+      height: 5rem;
+      background-color: rgb(255, 255, 255);
+      border: solid 1px rgb(240, 240, 240);
+      border-radius: 0px 10px 0px 0px;
+      .mainRightTop_content {
+        margin-left: 10px;
+        font-weight: 1000;
       }
     }
-
-    .mainContainer {
+    .mainRightBottom {
+      overflow: scroll;
       display: flex;
       width: 100%;
-      height: 100%;
-      justify-content: center;
-
-      .categoryWrapper {
-        justify-content: space-between;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 200px;
-        margin: 0px;
-        justify-content: space-between;
-        min-height: 619px;
-      }
-
+      height: 55rem;
+      background-color: rgb(255, 255, 255);
+      border: solid 1px rgb(240, 240, 240);
+      border-radius: 0px 0px 10px 0px;
       .contentWrapper {
-        display: flex;
-        flex-direction: column;
-        width: 40rem;
-        max-width: 902px;
-        border-radius: 0px 0px 15px 0px / 0px 0px 15px 0px;
-        border-left: 1px solid #f4f3f3;
-        padding: 20px 30px;
-      }
-    }
-  }
-}
-
-@media (max-width: 950px) {
-  .frameBackWrapper {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-  .wrapper {
-    width: 35rem;
-    background-color: #fff;
-    border-radius: 15px;
-    margin: 0 auto;
-    position: relative;
-
-    .arrow {
-      width: 30px;
-      height: 30px;
-      background-color: #fff;
-      position: absolute;
-      left: 50%;
-      top: -5px;
-      transform: rotate(45deg) translateX(-50%);
-    }
-
-    .top {
-      display: flex;
-      width: 100%;
-      height: 71px;
-      justify-content: center;
-
-      .planetName {
-        display: flex;
-        width: 200px;
-        border-radius: 15px 0px 0px 0px / 15px 0px 0px 0px;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid #f4f3f3;
-        border-right: 1px solid #f4f3f3;
-      }
-
-      .titleWrapper {
-        display: flex;
-        width: 902px;
-        border-radius: 0px 15px 0px 0px / 0px 15px 0px 0px;
-        align-items: center;
-        padding: 0px 62px;
-        box-sizing: border-box;
-        border-bottom: 1px solid #f4f3f3;
-        justify-content: space-between;
-      }
-    }
-
-    .mainContainer {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      justify-content: center;
-
-      .categoryWrapper {
-        justify-content: space-between;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        width: 200px;
-        margin: 0px;
-        justify-content: space-between;
-        min-height: 619px;
-      }
-
-      .contentWrapper {
-        display: flex;
-        flex-direction: column;
-        width: 25rem;
-        max-width: 902px;
-        border-radius: 0px 0px 15px 0px / 0px 0px 15px 0px;
-        border-left: 1px solid #f4f3f3;
-        padding: 20px 30px;
-      }
-    }
-  }
-}
-
-@media (max-width: 570px) {
-  .frameBackWrapper {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-  .wrapper {
-    width: 30rem;
-    background-color: #fff;
-    border-radius: 15px;
-    margin: 0 auto;
-    position: relative;
-
-    .arrow {
-      width: 30px;
-      height: 30px;
-      background-color: #fff;
-      position: absolute;
-      left: 50%;
-      top: -5px;
-      transform: rotate(45deg) translateX(-50%);
-    }
-
-    .top {
-      display: none;
-
-      .planetName {
-        display: flex;
-        width: 200px;
-        border-radius: 15px 0px 0px 0px / 15px 0px 0px 0px;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid #f4f3f3;
-        border-right: 1px solid #f4f3f3;
-      }
-
-      .titleWrapper {
-        display: flex;
-        width: 902px;
-        border-radius: 0px 15px 0px 0px / 0px 15px 0px 0px;
-        align-items: center;
-        padding: 0px 62px;
-        box-sizing: border-box;
-        border-bottom: 1px solid #f4f3f3;
-        justify-content: space-between;
-      }
-    }
-
-    .mainContainer {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 100%;
-      justify-content: center;
-
-      .categoryWrapper {
-        justify-content: start;
-        position: relative;
         display: flex;
         flex-direction: column;
         width: 100%;
-        margin: 0px;
-        min-height: 619px;
-      }
-
-      .contentWrapper {
-        display: flex;
-        flex-direction: column;
-        width: 30rem;
-        max-width: 902px;
-        border-radius: 0px 0px 15px 0px / 0px 0px 15px 0px;
         border-left: 1px solid #f4f3f3;
         padding: 20px 30px;
       }
     }
+  }
+}
+@media (max-width: 1250px) {
+  .mainContainer {
+    width: 95%;
+    .mainWrapperLeft {
+      flex-basis: 200px;
+      min-width: 200px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .mainContainer {
+    width: 100%;
+    flex-direction: column;
+
+    .mainWrapperLeft {
+      width: 95%;
+      display: flex;
+      justify-content: end;
+
+      .mainLeftTop {
+        display: none;
+      }
+
+      .mainLeftBottom {
+        border-radius: 0;
+        height: auto;
+      }
+    }
+
+    .mainWrapperRight {
+      width: 95%;
+      display: flex;
+      justify-content: start;
+      height: 100%;
+
+      .mainRightTop {
+        display: none;
+
+        .mainRightTop_content {
+          margin-left: 10px;
+          font-weight: 1000;
+        }
+      }
+
+      .mainRightBottom {
+        width: 100%;
+        border-radius: 0;
+        .Delete_planet_box {
+          left: 0;
+          bottom: 0;
+          margin: 30px 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .mainContainer {
+    width: 100%;
+  }
+
+  // 카테고리 박스 넓이 조정
+  .mainContainer .mainWrapperLeft {
+    width: 95%;
+  }
+
+  // content 박스 넓이 조정
+  .mainContainer .mainWrapperRight {
+    width: 95%;
+  }
+  // 카테고리 높이 조정
+  .mainContainer .mainWrapperLeft .mainLeftBottom {
+    height: auto;
+    border-radius: 0;
+  }
+
+  // contentWrapper 패딩 조정
+  .mainContainer .mainWrapperRight .mainRightBottom .contentWrapper {
+  }
+
+  .mainContainer .mainWrapperRight .mainRightBottom {
+    border-radius: 0;
+  }
+
+  .mainContainer .mainWrapperRight .mainRightBottom .Delete_planet_box {
+    left: 0;
+    bottom: 0;
+    // margin-bottom: 0;
+    margin: 30px 0;
   }
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import * as THREE from "three";
 import "./StarMap.scss";
 
-const StarMap = () => {
+const StarMap = ({ editClassName }) => {
   useEffect(() => {
     const getRandomParticelPos = (particleCount) => {
       const arr = new Float32Array(particleCount * 3);
@@ -16,7 +16,6 @@ const StarMap = () => {
       const width = canvas.clientWidth;
 
       const height = canvas.clientHeight;
-      console.log("제발 멈춰줘");
       const needResize = canvas.width !== width || canvas.height !== height;
       // resize only when necessary
       if (needResize) {
@@ -124,7 +123,7 @@ const StarMap = () => {
   }, []);
 
   return (
-    <div className="starMap_wrap">
+    <div className={editClassName}>
       <canvas id="starMap" />
     </div>
   );

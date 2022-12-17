@@ -15,6 +15,8 @@ import FaceIcon from "@mui/icons-material/Face";
 import LanguageIcon from "@mui/icons-material/Language";
 import ListIcon from "@mui/icons-material/List";
 import store from "../../../store";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -33,16 +35,84 @@ const style = {
 export default function BasicModal() {
   let metaData = localStorage.getItem("userInfo");
   let userInfo = JSON.parse(metaData);
-
   const [open, setOpen] = React.useState(false);
-  const [isEdit, setIsEdit] = React.useState(false);
-
+  const [isEdit, setIsEdit] = React.useState(true);
+  const [editUserName, setEditUserName] = React.useState(userInfo.username);
+  const [editEmail, setEditEmail] = React.useState(userInfo.email);
+  const navigate = useNavigate();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  //! 회원정보수정 로직
   const editHandler = () => {
-    console.log("dd");
-    setIsEdit(true);
+    let metaData = localStorage.getItem("userInfo");
+    let userInfo = JSON.parse(metaData);
+
+    axios({
+      method: "patch",
+      url: `${process.env.REACT_APP_URL}/api/user`,
+      header: {
+        withCredentials: true,
+        Authorization: localStorage.getItem("token"),
+      },
+      data: {
+        userID: userInfo.userID,
+        email: editEmail,
+        username: editUserName,
+      },
+    })
+      .then((res) => {
+        if (res.status === 201) {
+          setIsEdit(true);
+
+          userInfo.username = editUserName;
+          localStorage.setItem("userInfo", JSON.stringify(userInfo));
+          userInfo.email = editEmail;
+          localStorage.setItem("userInfo", JSON.stringify(userInfo));
+          console.log("회원정보 수정성공");
+          alert("회원정보가 수정되었습니다.");
+        }
+      })
+      .catch((e) => {
+        alert("중복된 이름입니다.");
+        console.log(e);
+      });
+  };
+
+  //! 회원탈퇴 로직
+  const deleteHandler = () => {
+    if (window.confirm("정말로 탈퇴하실건가요..?")) {
+      deleteUser();
+      console.log("회원탈퇴시켜줘");
+      alert("회원탈퇴 되셨습니다. 이용해 주셔서 감사합니다.");
+      return;
+    } else {
+      alert("더 나은 서비스로 보답하겠습니다");
+    }
+  };
+
+  const deleteUser = () => {
+    console.log("안녕");
+    let metaData = localStorage.getItem("userInfo");
+    let userInfo = JSON.parse(metaData);
+    axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_URL}/api/user/${userInfo._id}`,
+      header: {
+        withCredentials: true,
+        Authorization: localStorage.getItem("token"),
+      },
+      data: {
+        user: userInfo.userID,
+      },
+    }).then((res) => {
+      if (res.status === 201) {
+        console.log("회원탈퇴성공");
+        localStorage.removeItem("userInfo");
+        localStorage.removeItem("token");
+        window.location.href = "/";
+      }
+    });
   };
 
   return (
@@ -172,45 +242,108 @@ export default function BasicModal() {
                   }
                 </List>
               </div>
-              <div className="modalBox4">
-                <div className="modalInputBox">
-                  <div className="modalInputTitle">아이디</div>
-                  <input
-                    className="modalInput"
-                    disabled
-                    value={userInfo.userID}
-                  ></input>
+              {isEdit ? (
+                <div className="modalBox4">
+                  <div className="modalInputBox">
+                    <div className="modalInputTitle">아이디</div>
+                    <input
+                      className="modalInput"
+                      disabled
+                      value={userInfo.userID}
+                    ></input>
+                  </div>
+                  <div className="modalInputBox">
+                    <div className="modalInputTitle">성명</div>
+                    <input
+                      className="modalInput"
+                      disabled
+                      value={userInfo.username}
+                    ></input>
+                  </div>
+                  <div className="modalInputBox">
+                    <div className="modalInputTitle">비밀번호</div>
+                    <button
+                      className="resetPwBtn"
+                      onClick={() => [navigate("/resetpw1")]}
+                    >
+                      재설정하러가기
+                    </button>
+                  </div>
+                  <div className="modalInputBox">
+                    <div className="modalInputTitle">이메일</div>
+                    <input
+                      className="modalInput"
+                      disabled
+                      value={userInfo.email}
+                    ></input>
+                  </div>
+                  <div className="modalModifyBtnBox">
+                    <button
+                      className="modalModifyBtn"
+                      onClick={() => {
+                        setIsEdit(false);
+                      }}
+                    >
+                      수정하기
+                    </button>
+                    <button className="modalModifyBtn" onClick={deleteHandler}>
+                      회원탈퇴
+                    </button>
+                  </div>
                 </div>
-                <div className="modalInputBox">
-                  <div className="modalInputTitle">성명</div>
-                  <input
-                    className="modalInput"
-                    disabled
-                    value={userInfo.username}
-                  ></input>
+              ) : (
+                <div className="modalBox4">
+                  <div className="modalInputBox">
+                    <div className="modalInputTitle">아이디</div>
+                    <input
+                      className="modalInput"
+                      disabled
+                      value={userInfo.userID}
+                    ></input>
+                  </div>
+                  <div className="modalInputBox">
+                    <div className="modalInputTitle">성명</div>
+                    <input
+                      className="modalInput"
+                      value={editUserName}
+                      onChange={(c) => {
+                        setEditUserName(c.target.value);
+                      }}
+                    ></input>
+                  </div>
+                  <div className="modalInputBox">
+                    <div className="modalInputTitle">비밀번호</div>
+                    <input
+                      className="modalInput"
+                      disabled
+                      value="*****************"
+                    ></input>
+                  </div>
+                  <div className="modalInputBox">
+                    <div className="modalInputTitle">이메일</div>
+                    <input
+                      className="modalInput"
+                      value={editEmail}
+                      onChange={(c) => {
+                        setEditEmail(c.target.value);
+                      }}
+                    ></input>
+                  </div>
+                  <div className="modalModifyBtnBox">
+                    <button
+                      className="modalModifyBtn"
+                      onClick={() => {
+                        setIsEdit(true);
+                      }}
+                    >
+                      취소
+                    </button>
+                    <button className="modalModifyBtn" onClick={editHandler}>
+                      확인
+                    </button>
+                  </div>
                 </div>
-                <div className="modalInputBox">
-                  <div className="modalInputTitle">비밀번호</div>
-                  <input
-                    className="modalInput"
-                    disabled
-                    value="*****************"
-                  ></input>
-                </div>
-                <div className="modalInputBox">
-                  <div className="modalInputTitle">이메일</div>
-                  <input
-                    className="modalInput"
-                    disabled
-                    value={userInfo.email}
-                  ></input>
-                </div>
-                <div className="modalModifyBtnBox">
-                  <button className="modalModifyBtn" onClick={editHandler}>
-                    수정하기
-                  </button>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </Box>

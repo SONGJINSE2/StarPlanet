@@ -14,9 +14,7 @@ import Google_Btn from "../../assets/img/LoginBtn/googleBtn.png";
 import Github_Btn from "../../assets/img/LoginBtn/githubBtn.png";
 import "./LoginPage.scss";
 import axios from "axios";
-// mobx
 import { observer } from "mobx-react";
-import { toJS } from "mobx";
 import store from "../../store";
 
 axios.defaults.headers.common["Authorization"] = localStorage.getItem("token");
@@ -48,13 +46,16 @@ const LoginPage = observer(() => {
         localStorage.setItem("token", token);
       })
       .then(() => {
-        navigate("/workspace/main");
+        window.location.href = "/workspace/main";
       })
-      .catch((err) => console.log(err.response.data));
+      .catch((err) => {
+        console.log(err.response.data);
+        alert("아이디 비밀번호를 확인해주세요");
+      });
   });
   return (
     <div>
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap_Main"} />
       <div>
         <div className="signUpLogoWrapper">
           <img

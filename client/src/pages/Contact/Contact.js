@@ -16,7 +16,7 @@ export default function Contact() {
   return (
     <div className="ContactContainer">
       <Header />
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap_Main"} />
       <div className="ContactBox">
         <div className="ContactTextBox">
           <div className="ContactText1">연락 정보</div>

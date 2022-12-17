@@ -118,7 +118,9 @@ router.post("/findID", async (req, res) => {
       // 사용자 있으면 아이디 반환
       if (err) return res.status(400).json(err);
       console.log("findUser: ", r);
-      return res.status(200).json({ success: true, userID: r.userID });
+
+      if (r) return res.status(200).json({ success: true, userID: r.userID });
+      else return res.status(500).json({ msg: "아이디가 없습니다." });
     });
   } catch (error) {
     console.error(error);
@@ -137,7 +139,9 @@ router.post("/resetPW1", async (req, res) => {
         // 사용자 있으면 _id 반환
         if (err) return res.status(400).json(err);
         console.log("findUser: ", r);
-        return res.status(200).json({ success: true, uid: r.id });
+
+        if (r) return res.status(200).json({ success: true, userID: r.userID });
+        else return res.status(500).json({ msg: "사용자를 찾을 수 없습니다" });
       }
     );
   } catch (error) {

@@ -8,19 +8,60 @@
   }
   .OptionWrapper {
     ul {
+      display: flex;
+      flex-direction: row;
       list-style: none;
-      li {
+      a {
         float: left;
-        margin-left: 65px;
-        font-size: 2vw;
+        margin: 0px 30px 0px 30px;
+        font-size: 38px;
         color: #fff;
         font-weight: 500;
       }
       #selected {
         color: #e0c75b;
       }
+    }
+  }
+}
 
-      .myplanet {
+@media (max-width: 1250px) {
+  .workspaceHeaderWrapper {
+    flex-direction: column;
+    padding: 40px 0px 40px 0px;
+    .LogoWrapper {
+      scale: 1.5;
+    }
+  }
+  .OptionWrapper {
+    margin: 20px 5px 20px 5px;
+    ul {
+      a {
+        font-size: 30px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .OptionWrapper {
+    ul {
+      a {
+        font-size: 16px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .OptionWrapper {
+    ul {
+      li {
+        margin: 0;
+      }
+      a {
+        font-size: 14px !important;
+        margin: 0px 10px 0px 10px !important;
       }
     }
   }

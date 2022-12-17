@@ -19,7 +19,7 @@ export default function AboutUs() {
   return (
     <div className="aboutUsSection">
       <Header />
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap_Main"} />
       <div className="aboutUsContainer">
         <div className="aboutUstitleBox">
           <div className="aboutUsTitle">소중한 사람들과의 추억을</div>

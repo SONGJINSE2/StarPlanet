@@ -10,7 +10,7 @@ const WorkSpaceMain = () => {
   console.log(localStorage.getItem("token"));
   return (
     <div className="back">
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap"} />
       <Header />
       <Main />
       <Footer />

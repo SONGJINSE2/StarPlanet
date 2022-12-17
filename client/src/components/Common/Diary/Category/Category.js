@@ -91,137 +91,37 @@ const Category = observer(({ sx }) => {
           primary="사진첩"
         />
       </ListItemButton>
-      {/* 일정 */}
-      <ListItemButton>
-        <ListItemIcon
-          sx={{ color: "#0D0783", minWidth: "45px", fontSize: "20px" }}
-        >
-          <FontAwesomeIcon icon={faCalendarDays} />
-        </ListItemIcon>
-        <ListItemText
-          primaryTypographyProps={{
-            color: "#0D0783",
-            fontSize: "15px",
-            fontWeight: 500,
-          }}
-          primary="일정"
-        />
-      </ListItemButton>
-      {/* 북마크 */}
-      <ListItemButton>
-        <ListItemIcon
-          sx={{ color: "#0D0783", minWidth: "45px", fontSize: "20px" }}
-        >
-          <FontAwesomeIcon icon={faBookmark} />
-        </ListItemIcon>
-        <ListItemText
-          primaryTypographyProps={{
-            color: "#0D0783",
-            fontSize: "15px",
-            fontWeight: 500,
-          }}
-          primary="북마크"
-        />
-      </ListItemButton>
+
       {/* 다이어리 */}
-      <ListItemButton onClick={handleClick}>
-        <ListItemIcon
-          sx={{ color: "#0D0783", minWidth: "45px", fontSize: "20px" }}
-        >
-          <FontAwesomeIcon icon={faBook} />
-        </ListItemIcon>
-        <ListItemText
-          primaryTypographyProps={{
-            color: "#0D0783",
-            fontSize: "15px",
-            fontWeight: 500,
-          }}
-          primary="다이어리"
-        />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton
-            sx={{ height: "30px", pl: 5, fontSize: "13px", fontWeight: 500 }}
-          >
-            <ListItemIcon sx={{ color: "#0D0783", minWidth: "30px" }}>
-              <FaList />
-            </ListItemIcon>
-            <ListItemText
-              primaryTypographyProps={{
+      <List component="div" disablePadding>
+        {diaryCategory?.map((e) => {
+          return (
+            <ListItemButton
+              sx={{
                 color: "#0D0783",
-                fontSize: "13px",
-                fontWeight: 500,
+                minWidth: "45px",
+                fontSize: "20px",
               }}
-              primary="버킷리스트"
-            />
-          </ListItemButton>
-          <ListItemButton
-            sx={{ height: "30px", pl: 5, fontSize: "13px", fontWeight: 500 }}
-          >
-            <ListItemIcon sx={{ color: "#0D0783", minWidth: "30px" }}>
-              <FaList />
-            </ListItemIcon>
-            <ListItemText
-              primaryTypographyProps={{
-                color: "#0D0783",
-                fontSize: "13px",
-                fontWeight: 500,
+              onClick={() => {
+                navigate(`/diary/main/${planet}/${e}`);
               }}
-              primary="한줄 일기"
-            />
-          </ListItemButton>
-          <ListItemButton
-            sx={{ height: "30px", pl: 5, fontSize: "13px", fontWeight: 500 }}
-            onClick={handleClick_2}
-          >
-            <ListItemIcon sx={{ color: "#0D0783", minWidth: "30px" }}>
-              <FaList />
-            </ListItemIcon>
-            <ListItemText
-              primaryTypographyProps={{
-                color: "#0D0783",
-                fontSize: "13px",
-                fontWeight: 500,
-              }}
-              primary="추억 저장소"
-            />
-            {open_2 ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={open_2} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {diaryCategory?.map((e) => {
-                return (
-                  <ListItemButton
-                    sx={{
-                      height: "30px",
-                      pl: 7,
-                      fontSize: "11px",
-                      fontWeight: 500,
-                    }}
-                    onClick={() => {
-                      navigate(`/diary/main/${planet}/${e}`);
-                    }}
-                  >
-                    <ListItemIcon sx={{ color: "#0D0783", minWidth: "30px" }}>
-                      <FaFolder />
-                    </ListItemIcon>
-                    <ListItemText
-                      primaryTypographyProps={{
-                        color: "#0D0783",
-                        fontSize: "11px",
-                        fontWeight: 500,
-                      }}
-                      primary={e}
-                    />
-                  </ListItemButton>
-                );
-              })}
-            </List>
-          </Collapse>
-        </List>
-      </Collapse>
+            >
+              <ListItemIcon sx={{ color: "#0D0783", minWidth: "30px" }}>
+                <FontAwesomeIcon icon={faBook} />
+              </ListItemIcon>
+              <ListItemText
+                primaryTypographyProps={{
+                  color: "#0D0783",
+                  fontSize: "15px",
+                  fontWeight: 500,
+                  marginLeft: "10px",
+                }}
+                primary="다이어리"
+              />
+            </ListItemButton>
+          );
+        })}
+      </List>
     </List>
   );
 });

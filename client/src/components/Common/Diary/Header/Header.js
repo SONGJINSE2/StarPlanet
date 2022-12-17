@@ -15,16 +15,16 @@ const Header = () => {
         <div className="dairyHeaderLogoContainer">
           <Logo onClick={() => navigate("/workspace/main")} />
         </div>
-        <div className="dairyHeaderSearchbarContainer">
+        {/* <div className="dairyHeaderSearchbarContainer">
           <SearchBar />
-        </div>
+        </div> */}
         <div className="dairyHeaderBtnContainer">
-          <IconButton className="btn">
+          {/* <IconButton className="btn">
             <FaRegComment />
           </IconButton>
           <IconButton className="btn">
             <FaRegBell />
-          </IconButton>
+          </IconButton> */}
           <ModifyToggle />
         </div>
       </div>

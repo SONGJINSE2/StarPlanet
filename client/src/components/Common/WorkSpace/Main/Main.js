@@ -17,12 +17,17 @@ import store from "../../../../store/index";
 import { observer } from "mobx-react";
 import { toJS } from "mobx";
 import axios from "axios";
+import $ from "jquery";
 
 const Main = observer(() => {
   const { userClass } = store;
   const [data, setData] = useState([]);
   let userInfo = localStorage.getItem("userInfo");
   let arr = JSON.parse(userInfo);
+
+  // *************************************
+  $("body").addClass("no_scroll");
+  // *************************************
 
   useEffect(() => {
     console.log(arr._id);
@@ -42,7 +47,7 @@ const Main = observer(() => {
         .catch((err) => console.log(err.response.data));
     }
     fetchAndSetUser(arr._id);
-  }, []);
+  }, [setData]);
 
   return (
     <div className="PlanetSelector">

@@ -13,28 +13,22 @@ const ModifyPage = () => {
   const [username, setusername] = useState("data.username");
   const [email, setEmail] = useState("data.email");
 
-  //   const ModifyPage = () => {
-
-  // }
-
   const confirmModify = () => {
-    axios
-      .post(
-        process.env.REACT_APP_URL + "/api/user/",
-        {
-          headers: { withCredentials: true },
-        },
-        {
-          userID: userID,
-          email: email,
-          username: username,
-        }
-      )
-      .then((res) => console.log(res.data));
+    axios({
+      method: "post",
+      url: process.env.REACT_APP_URL + "/api/user/",
+      headers: { withCredentials: true },
+      data: {
+        userID: userID,
+        email: email,
+        username: username,
+      },
+    }).then((res) => console.log(res.data));
   };
+
   return (
     <div>
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap_Main"} />
       <div className="modifyLogoWrapper">
         <img src={Main_Logo} />
       </div>

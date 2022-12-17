@@ -12,9 +12,13 @@ const AlbumMain = () => {
   let userInfo = JSON.parse(metaData);
   return (
     <div className="back">
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap_Main"} />
       <Header />
-      <Frame planetTitle={userInfo.username} content={<Main />} />
+      <Frame
+        planetTitle={userInfo.username}
+        content={<Main />}
+        topTitle={"사진첩"}
+      />
     </div>
   );
 };

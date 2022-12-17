@@ -19,7 +19,7 @@ const Modify = ({ post, setPost }) => {
     setTitleValue(e.target.value);
   };
 
-  // 글 수정 함수
+  //! 게시글 수정 로직
   const onClickPostModify = async () => {
     await axios({
       method: "put",

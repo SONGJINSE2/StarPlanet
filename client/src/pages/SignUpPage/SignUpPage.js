@@ -42,7 +42,7 @@ const SignUpPage = memo(() => {
 
   return (
     <div>
-      <StarMap />
+      <StarMap editClassName={"starMap_wrap_Main"} />
       <div className="signUpLogoWrapper">
         <img
           src={Main_Logo}

@@ -2,12 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90%;
-  height: 100%;
+  width: 45rem;
+  height: 45rem;
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin-top: 5rem;
+  padding-top: 1rem;
+  border-radius: 15px;
   .makePlanetContainer {
     height: 100%;
   }
@@ -24,25 +27,34 @@
     margin: 2px;
   }
 }
+.no_scroll {
+  overflow: auto !important;
+}
 
-@media (max-width: 787px) {
+#fp-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
   .makePlanetSection {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80%;
-    height: 60rem;
+    width: 20rem;
+    height: 55rem;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-top: 5rem;
+    padding-top: 1rem;
+    border-radius: 15px;
     .makePlanetContainer {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      width: 80%;
-      height: 80%;
+      height: 100%;
     }
     .planetBox {
       display: flex;

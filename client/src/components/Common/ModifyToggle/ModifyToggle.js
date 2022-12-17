@@ -3,18 +3,13 @@ import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 import ModifyPlanet from "../ModifyPlanet/ModifyPlanet";
 import Avatar from "@mui/material/Avatar";
-import { LocalActivity } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
 import "./ModifyToggle.scss";
 
-export default function SimplePopper() {
+const SimplePopper = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const navigate = useNavigate();
-
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
-
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
 
@@ -48,4 +43,6 @@ export default function SimplePopper() {
       </Popper>
     </div>
   );
-}
+};
+
+export default SimplePopper;

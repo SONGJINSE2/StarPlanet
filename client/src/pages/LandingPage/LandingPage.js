@@ -42,7 +42,7 @@ const LandingPage = () => {
     <div id="fullpage">
       <img className="background" src={image} />
 
-      <div className="section">
+      <div className="section" style={{ zIndex: "2" }}>
         <FirstPage />
       </div>
 

@@ -1,6 +1,23 @@
-.MakeMemberBtnBox {
+.MakeMemberBtnBox2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem;
+  margin-right: 0.5rem;
+  div {
+    padding-top: 2rem;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 768px) {
+  .MakeMemberBtnBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
+    div {
+      padding-top: 2rem;
+      box-sizing: border-box;
+    }
+  }
 }

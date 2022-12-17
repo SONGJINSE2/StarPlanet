@@ -53,24 +53,35 @@ router.get("/", (req, res, next) => {
   //   });
 });
 
-// 회원수정
-router.put("/:_id", (req, res) => {
-  const _id = req.params._id;
-  User.updateOne({ _id }, { $set: req.body })
-    .then((r) => {
-      res.status(200).send({ success: true, msg: r });
-    })
-    .catch((e) => {
-      res.status(500).send({ msg: e.message });
+//! 회원정보수정 로직
+router.patch("/", async (req, res) => {
+  console.log(req.body);
+  const { userID, email, username } = req.body;
+
+  try {
+    let user = await User.findOne({ username });
+    if (user) {
+      res.status(500).send({ msg: "duplicate" });
+      return false;
+    }
+    User.findOneAndUpdate(
+      { userID },
+      { $set: { username: username, email: email } },
+      { new: true }
+    ).then((r) => {
+      res.status(201).send({ success: true, msg: r });
     });
+  } catch (e) {
+    res.status(500).send({ msg: e.message });
+  }
 });
 
-// 회원 탈퇴
-router.delete("/:user", (req, res) => {
-  const { user } = req.params;
-  User.deleteOne({ _id: user.id })
+//! 회원 탈퇴 로직
+router.delete("/:userID", (req, res) => {
+  const { userID } = req.params;
+  User.deleteOne({ _id: userID })
     .then((r) => {
-      res.status(200).send({ success: true, msg: r });
+      res.status(201).send({ success: true, msg: r });
     })
     .catch((e) => {
       res.status(500).send({ msg: e.message });

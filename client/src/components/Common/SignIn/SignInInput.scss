@@ -34,3 +34,27 @@
     font-family: "Noto Sans KR", sans-serif;
   }
 }
+
+@media (max-width: 500px) {
+  .signInInputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 85%;
+    height: 7rem;
+    margin: 10px 0px 10px 0px;
+    .signInInputSection {
+      width: 100%;
+      .signInInputIcon {
+        width: 2rem;
+        margin: 0.2rem;
+        color: #fff;
+        font-size: 1rem;
+        text-align: center;
+      }
+      .signInInput {
+        width: 80%;
+      }
+    }
+  }
+}

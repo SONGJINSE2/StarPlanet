@@ -168,3 +168,22 @@
   display: flex;
   flex-direction: row;
 }
+
+@media (max-width: 500px) {
+  .signInWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: 36rem;
+    align-items: center;
+    .signInSection {
+      width: 100%;
+      .signIn {
+        width: 100%;
+        .signIn_box {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

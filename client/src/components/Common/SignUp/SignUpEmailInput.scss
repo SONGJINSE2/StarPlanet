@@ -28,3 +28,9 @@
     font-family: "Noto Sans KR", sans-serif;
   }
 }
+
+@media (max-width: 500px) {
+  .signUpEmailInputContainer {
+    width: 85%;
+  }
+}

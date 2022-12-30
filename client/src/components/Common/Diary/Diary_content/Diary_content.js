@@ -3,24 +3,25 @@ import "./Diary_content.scss";
 import { ReactComponent as Logo } from "../../../../assets/img/LandingPage/second_page_logo.svg";
 
 const Diary_content = ({ title, date, writer, content }) => {
-  const [contentArr, setContentArr] = useState([]);
-  const [dateStr, setDateStr] = useState("");
+  // const [contentArr, setContentArr] = useState([]);
+  // const [dateStr, setDateStr] = useState("");
 
-  let arr = content.split(/<.+?>/);
-  useEffect(() => {
-    //
-    let arr2 = [];
-    for (var i = 1; i < arr.length; i++) {
-      if (i % 2 == 1) {
-        arr2.push(arr[i]);
-      }
-    }
-    setContentArr(arr2);
-    // 날짜 문자열 화
-    let d = new Date(date);
-    let dstr = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() + 1} `;
-    setDateStr(dstr);
-  }, []);
+  let d = new Date(date);
+  // useEffect(() => {
+  //   let arr = content.split(/<.+?>/);
+  //   let arr2 = [];
+  //   for (var i = 1; i < arr.length; i++) {
+  //     if (i % 2 == 1) {
+  //       arr2.push(arr[i]);
+  //     }
+  //   }
+  //   console.log(arr, arr2);
+  //   setContentArr(arr2);
+  //   // 날짜 문자열 화
+  //   let d = new Date(date);
+  //   let dstr = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate() + 1} `;
+  //   setDateStr(dstr);
+  // }, []);
 
   return (
     <div className="diary_section">
@@ -35,12 +36,15 @@ const Diary_content = ({ title, date, writer, content }) => {
               <p className="diary_writer">{writer}</p>
             </div>
             {/* 반복문 */}
-            {contentArr.map((e) => {
+            {content.split(/<.+?>/)[1]}
+            {/* {contentArr.map((e) => {
               return <p className="diary_content">{e}</p>;
-            })}
+            })} */}
           </div>
           <div className="diary_footer_container">
-            <p className="diary_date">{dateStr}</p>
+            <p className="diary_date">
+              {`${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`}
+            </p>
             <div className="diary_footer_btn_container">
               {/* <div className="diary_footer_btn">
                 <FaRegBookmark />

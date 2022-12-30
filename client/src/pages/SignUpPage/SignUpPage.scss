@@ -42,3 +42,15 @@
     align-items: center;
   }
 }
+
+@media (max-width: 500px) {
+  .signUpLogoWrapper {
+    width: 80%;
+  }
+  .signUpWrapper {
+    width: 95%;
+    .signUpSection {
+      width: 100%;
+    }
+  }
+}

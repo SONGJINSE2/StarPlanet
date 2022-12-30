@@ -112,7 +112,7 @@ const MakePlanetPage = () => {
 
   return (
     <div className="">
-      <StarMap editClassName={"starMap_wrap"} />
+      <StarMap editClassName={"starMap_wrap_MakePlanet"} />
       <Headers />
       <div className="makePlanetSection">
         <div className="makePlanetContainer">

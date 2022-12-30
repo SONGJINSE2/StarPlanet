@@ -61,3 +61,19 @@
     margin: 20px;
   }
 }
+
+@media (max-width: 500px) {
+  .resetPw2LogoWrapper {
+    width: 85%;
+  }
+
+  .resetPw2Wrapper {
+    width: 95%;
+    .resetPw2HeaderSection {
+      width: 85%;
+    }
+    .resetPw2Section {
+      width: 100%;
+    }
+  }
+}

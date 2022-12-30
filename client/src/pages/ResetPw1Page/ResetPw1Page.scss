@@ -49,3 +49,20 @@
     margin: 0.7rem;
   }
 }
+
+@media (max-width: 500px) {
+  .resetPw1LogoWrapper {
+    width: 85%;
+  }
+
+  .resetPw1Wrapper {
+    width: 100%;
+    .resetPw1HeaderBox {
+      width: 95%;
+    }
+
+    .resetPw1Section {
+      width: 95%;
+    }
+  }
+}

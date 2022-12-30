@@ -20,7 +20,7 @@ const SecondPage = () => {
           </div>
           <p>
             친구, 가족들과의 추억을 기록하고 공유하고 싶지 않으셨나요 <br />
-            우리만의 별에 기록하고 싶은 추억을 남기고 마음껏 꾸며보세요?
+            우리만의 별에 기록하고 싶은 추억을 남기고 마음껏 꾸며보세요!
           </p>
           {token != null && token != undefined ? (
             <div className="second_page_btn_wrapper">

@@ -18,3 +18,10 @@
     font-family: "Noto Sans KR", sans-serif;
   }
 }
+
+@media (max-width: 500px) {
+  .signInFindTxtContainer {
+    margin: 0 auto;
+    width: 80%;
+  }
+}

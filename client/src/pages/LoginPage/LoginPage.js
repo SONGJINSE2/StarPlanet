@@ -55,7 +55,7 @@ const LoginPage = observer(() => {
   });
   return (
     <div>
-      <StarMap editClassName={"starMap_wrap_Main"} />
+      <StarMap editClassName={"starMap_wrap"} />
       <div>
         <div className="signUpLogoWrapper">
           <img
@@ -83,7 +83,7 @@ const LoginPage = observer(() => {
                 placeholder={"비밀번호"}
                 setData={setPw}
               />
-              <div>
+              <div className="signIn_box">
                 <SignInFindTxt />
               </div>
 

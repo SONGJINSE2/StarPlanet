@@ -50,3 +50,20 @@
     font-size: 1rem;
   }
 }
+
+@media (max-width: 500px) {
+  .findIdLogoWrapper {
+    width: 85%;
+  }
+  .findIdWrapper {
+    margin: 0 auto;
+    width: 100%;
+
+    .findIdSection {
+      width: 95%;
+    }
+    .findIdHeaderSection {
+      width: 80%;
+    }
+  }
+}

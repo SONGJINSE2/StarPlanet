@@ -89,14 +89,14 @@ const Comment = (props) => {
               sx={{ width: "100%" }}
               label="댓글 작성"
               multiline
-              rows={1}
+              rows={4}
               value={info.content}
               onChange={(c) => {
                 setInfo({ ...info, content: c.target.value });
               }}
               variant="filled"
             />
-            <div>
+            <div className="comment_button">
               <button
                 className="diaryReaderCommentEdit"
                 onClick={() => {
@@ -112,8 +112,8 @@ const Comment = (props) => {
           </>
         ) : (
           <div>
-            <input value={info.content}></input>
-            <div>
+            <div className="comment_text">{info.content}</div>
+            <div className="comment_button">
               <button
                 className="diaryReaderCommentEdit"
                 onClick={() => {

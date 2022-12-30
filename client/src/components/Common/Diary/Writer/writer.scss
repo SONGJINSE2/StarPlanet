@@ -1,74 +1,54 @@
-.dairyWriterBackWrapper {
-  height: 70rem;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  .dairyWriterWrapper {
-    width: 70rem;
-    height: 100%;
-    background-color: #fff;
-    margin: 0 auto;
-    position: relative;
-    padding: 30px;
-    border-radius: 10px;
+.dairyWriterSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 1200px;
+  height: 1240px;
 
-    .dairyWriterArrow {
-      width: 30px;
-      height: 30px;
+  .dairyWriterBackWrapper {
+    width: 100%;
+    height: 80%;
+
+    .dairyWriterWrapper {
+      width: 100%;
+      height: 100%;
       background-color: #fff;
-      position: absolute;
-      left: 50%;
-      top: -14px;
-      transform: rotate(45deg);
-    }
+      padding: 30px;
+      border-radius: 10px;
 
-    .dairyWriterTitleContainer {
-      width: 80%;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .BtnBox {
-        width: 50%;
-        Button {
-          margin-right: 2px;
+      .dairyWriterTitleContainer {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+
+        .BtnBox {
+          flex-basis: 20%;
+          display: flex;
+          width: 100%;
+          Button {
+            width: 100px;
+            margin-right: 2px;
+          }
         }
       }
     }
   }
 }
 
-@media (max-width: 1024px) {
-  .dairyWriterBackWrapper {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    .dairyWriterWrapper {
-      width: 45rem;
-      background-color: #fff;
-      margin: 0 auto;
-      position: relative;
-      padding: 30px;
-      border-radius: 15px;
-
-      .dairyWriterArrow {
-        width: 30px;
-        height: 30px;
-        background-color: #fff;
-        position: absolute;
-        left: 50%;
-        top: -14px;
-        transform: rotate(45deg);
-      }
-
-      .dairyWriterTitleContainer {
-        width: 80%;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .BtnBox {
-          width: 100%;
-          Button {
-            margin-right: 2px;
+@media (max-width: 1250px) {
+  .dairyWriterSection {
+    width: 95%;
+    .dairyWriterBackWrapper {
+      width: 100%;
+      .dairyWriterWrapper {
+        .dairyWriterTitleContainer {
+          .BtnBox {
+            width: 200px;
+            Button {
+              margin-right: 2px;
+            }
           }
         }
       }
@@ -77,37 +57,13 @@
 }
 
 @media (max-width: 768px) {
-  .dairyWriterBackWrapper {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    .dairyWriterWrapper {
-      width: 35rem;
-      background-color: #fff;
-      margin: 0 auto;
-      position: relative;
-      padding: 30px;
-      border-radius: 15px;
-
-      .dairyWriterArrow {
-        width: 30px;
-        height: 30px;
-        background-color: #fff;
-        position: absolute;
-        left: 50%;
-        top: -14px;
-        transform: rotate(45deg);
-      }
-
-      .dairyWriterTitleContainer {
-        width: 100%;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .BtnBox {
-          width: 100%;
-          Button {
-            margin-right: 2px;
+  .dairyWriterSection {
+    .dairyWriterBackWrapper {
+      .dairyWriterWrapper {
+        .dairyWriterTitleContainer {
+          .BtnBox {
+            Button {
+            }
           }
         }
       }
@@ -115,20 +71,21 @@
   }
 }
 
-.writer_wrapper {
-  height: 100%;
-  .ck-editor__editable_inline {
-    min-height: 600px;
-    max-height: 100%;
-    width: 100%;
-    overflow-y: scroll;
-  }
-  .ck-content {
-    max-height: 600px;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  .ck-content::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+@media (max-width: 500px) {
+  .dairyWriterSection {
+    .dairyWriterBackWrapper {
+      .dairyWriterWrapper {
+        .dairyWriterTitleContainer {
+          .BtnBox {
+            flex-direction: column;
+            scale: 0.8;
+            margin-bottom: 10px;
+            Button {
+              margin: 2px;
+            }
+          }
+        }
+      }
+    }
   }
 }

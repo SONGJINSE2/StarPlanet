@@ -38,6 +38,7 @@ const Diary_main = ({ planetTitle }) => {
     setPage(p);
     _DATA.jump(p);
   };
+
   useEffect(() => {
     axios({
       method: "get",

@@ -64,89 +64,91 @@ const Writer = () => {
   };
 
   return (
-    <div className="dairyWriterBackWrapper">
-      <div className="dairyWriterWrapper">
-        <div className="dairyWriterTitleContainer">
-          <TextField
-            sx={{
-              width: "900px",
-              color: "#3c52b2",
-              "& label.Mui-focused": {
+    <div className="dairyWriterSection">
+      <div className="dairyWriterBackWrapper">
+        <div className="dairyWriterWrapper">
+          <div className="dairyWriterTitleContainer">
+            <TextField
+              sx={{
+                width: "900px",
                 color: "#3c52b2",
-              },
-              "& .MuiInput-underline:after": {
-                borderBottomColor: "#3c52b2",
-              },
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "#3c52b2",
-                },
-                "&:hover fieldset": {
-                  borderColor: "#3c52b2",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "#3c52b2",
-                },
-              },
-            }}
-            rows={1}
-            size="small"
-            label="제목"
-            variant="standard"
-            value={titleValue}
-            onChange={onChangeValue}
-          />
-          <div className="BtnBox">
-            <Button
-              onClick={onClickPostWrite}
-              sx={{
-                backgroundColor: "#0D0D7E",
-                "&:hover": {
-                  backgroundColor: "#fff",
+                "& label.Mui-focused": {
                   color: "#3c52b2",
                 },
-              }}
-              variant="contained"
-            >
-              작성 완료
-            </Button>
-            <Button
-              onClick={() => {
-                navigate(-1);
-              }}
-              sx={{
-                backgroundColor: "#0D0D7E",
-                "&:hover": {
-                  backgroundColor: "#fff",
-                  color: "#3c52b2",
+                "& .MuiInput-underline:after": {
+                  borderBottomColor: "#3c52b2",
+                },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#3c52b2",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#3c52b2",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#3c52b2",
+                  },
                 },
               }}
-              variant="contained"
-            >
-              취소
-            </Button>
-          </div>
-        </div>
-        <div className="dairyWriterEditorContainer">
-          {/* <Editor /> */}
-          <div className="writer_wrapper">
-            <CKEditor
-              editor={ClassicEditor}
-              data=""
-              onReady={(editor) => {
-                // You can store the "editor" and use when it is needed.
-                // console.log("Editor is ready to use!", editor);
-              }}
-              onChange={(event, editor) => {
-                setContentValue(editor.getData());
-              }}
-              onBlur={(event, editor) => {
-                // console.log("Blur.", editor);
-              }}
-              onFocus={(event, editor) => {
-                // console.log("Focus.", editor);
-              }}
+              rows={1}
+              size="small"
+              label="제목"
+              variant="standard"
+              value={titleValue}
+              onChange={onChangeValue}
             />
+            <div className="BtnBox">
+              <Button
+                onClick={onClickPostWrite}
+                sx={{
+                  backgroundColor: "#0D0D7E",
+                  "&:hover": {
+                    backgroundColor: "#fff",
+                    color: "#3c52b2",
+                  },
+                }}
+                variant="contained"
+              >
+                작성 완료
+              </Button>
+              <Button
+                onClick={() => {
+                  navigate(-1);
+                }}
+                sx={{
+                  backgroundColor: "#0D0D7E",
+                  "&:hover": {
+                    backgroundColor: "#fff",
+                    color: "#3c52b2",
+                  },
+                }}
+                variant="contained"
+              >
+                취소
+              </Button>
+            </div>
+          </div>
+          <div className="dairyWriterEditorContainer">
+            {/* <Editor /> */}
+            <div className="writer_wrapper">
+              <CKEditor
+                editor={ClassicEditor}
+                data=""
+                onReady={(editor) => {
+                  // You can store the "editor" and use when it is needed.
+                  // console.log("Editor is ready to use!", editor);
+                }}
+                onChange={(event, editor) => {
+                  setContentValue(editor.getData());
+                }}
+                onBlur={(event, editor) => {
+                  // console.log("Blur.", editor);
+                }}
+                onFocus={(event, editor) => {
+                  // console.log("Focus.", editor);
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

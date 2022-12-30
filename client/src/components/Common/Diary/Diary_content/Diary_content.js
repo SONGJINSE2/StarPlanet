@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Diary_content.scss";
 import { ReactComponent as Logo } from "../../../../assets/img/LandingPage/second_page_logo.svg";
-import { FaBookmark, FaRegBookmark } from "react-icons/fa";
-import { BsThreeDotsVertical } from "react-icons/bs";
 
 const Diary_content = ({ title, date, writer, content }) => {
   const [contentArr, setContentArr] = useState([]);

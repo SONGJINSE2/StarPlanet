@@ -55,7 +55,9 @@
           }
           .diaryReaderContent {
             padding: 20px;
-            word-wrap: break-word;
+            li {
+              word-wrap: break-word;
+            }
           }
           .diaryReaderCommentWrapper {
             .diaryReaderCommentTitle {
@@ -65,21 +67,30 @@
               border-bottom: 1px solid #d3d3d3;
             }
             .diaryReaderCommentContainer {
+              width: 100%;
               padding: 26px;
               .diaryReaderCommentBox {
+                width: 100%;
                 padding-bottom: 20px;
                 .diaryReaderCommentWriter {
                   font-size: 15px;
                   font-weight: bold;
                 }
                 .diaryReaderCommentContent {
-                  display: flex;
-                  justify-content: space-between;
+                  width: 100%;
                   font-size: 13px;
                   padding-top: 10px;
                   padding-left: 15px;
                   padding-bottom: 10px;
                   border-bottom: 1px solid #d3d3d3;
+                  .comment_text {
+                    width: 100%;
+                    word-break: normal;
+                  }
+                  .comment_button {
+                    margin-top: 10px;
+                    text-align: end;
+                  }
                 }
                 .diaryReaderCommentEdit {
                   position: relative;

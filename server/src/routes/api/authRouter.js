@@ -127,7 +127,7 @@ router.post("/findID", async (req, res) => {
     res.status(500).json({ errors: "server Error" });
   }
 });
-// 비밀번호 재설정
+//~ 비밀번호 재설정
 router.post("/resetPW1", async (req, res) => {
   console.log("resetPW!");
   const { userID, username, email } = req.body;
@@ -140,7 +140,7 @@ router.post("/resetPW1", async (req, res) => {
         if (err) return res.status(400).json(err);
         console.log("findUser: ", r);
 
-        if (r) return res.status(200).json({ success: true, userID: r.userID });
+        if (r) return res.status(200).json({ success: true, uid: r.id });
         else return res.status(500).json({ msg: "사용자를 찾을 수 없습니다" });
       }
     );
@@ -173,7 +173,7 @@ router.post("/resetPW2", async (req, res) => {
 function setUserToken(user) {
   user.type = "JWT";
   const token = jwt.sign(user.toJSON(), secret, {
-    expiresIn: "3h", // 만료시간 3시간
+    expiresIn: "1h", // 만료시간 1시간
     issuer: "starplanet",
   });
   console.log("token : ", token);

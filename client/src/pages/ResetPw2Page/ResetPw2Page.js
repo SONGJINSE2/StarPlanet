@@ -19,8 +19,10 @@ const ResetPw2Page = () => {
   const Reset = () => {
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_URL}/api/auth/resetPW2`,
-      header: { withCredentials: true },
+      url: `${process.env.REACT_APP_URL}/api/auth/resetPW2/`,
+      header: {
+        withCredentials: true,
+      },
       data: {
         uid: uid,
         hashedPW: hashedPW,

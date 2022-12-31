@@ -7,6 +7,9 @@ import ResetPw1Btn from "../../components/Common/ResetPw1/ResetPw1Btn";
 import SignUpIdInput from "../../components/Common/SignUp/SignUpIdInput";
 import SignUpNameInput from "../../components/Common/SignUp/SignUpNameInput";
 import SignUpEmailInput from "../../components/Common/SignUp/SignUpEmailInput";
+import ResetPw1NameInput from "../../components/Common/ResetPw1/ResetPw1NameInput";
+import ResetPw1EmailInput from "../../components/Common/ResetPw1/ResetPw1EmailInput";
+import ResetPw1IdInput from "../../components/Common/ResetPw1/ResetPw1IdInput";
 import axios from "axios";
 
 const ResetPw1Page = () => {
@@ -23,7 +26,7 @@ const ResetPw1Page = () => {
       data: { userID: userID, username: username, email: email },
     })
       .then((res) => {
-        console.log(res.data);
+        console.log("천재", res.data);
         alert("비밀번호를 재설정해주세요");
         const uid = res.data.uid;
         navigate(`/resetpw2/${uid}`);
@@ -53,21 +56,21 @@ const ResetPw1Page = () => {
           <div className="resetPw1Text">
             회원가입시 기재하셨던 정보를 입력해주세요.
           </div>
-          <SignUpIdInput
+          <ResetPw1IdInput
             value={userID}
             onChange={(e) => {
               setuserID(e.target.value);
               console.log(e.target.value);
             }}
           />
-          <SignUpNameInput
+          <ResetPw1NameInput
             value={username}
             onChange={(e) => {
               setusername(e.target.value);
               console.log(e.target.value);
             }}
           />
-          <SignUpEmailInput
+          <ResetPw1EmailInput
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);

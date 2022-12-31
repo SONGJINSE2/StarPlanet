@@ -40,6 +40,16 @@
 
 @media (max-width: 500px) {
   .signUpIdInputContainer {
-    width: 85%;
+    width: 70%;
+    .signUpIdInput {
+      border: none;
+      width: 16rem;
+      height: 2rem;
+      padding: 1rem;
+      box-sizing: border-box;
+      color: #fff;
+      font-size: 12px;
+      font-family: "Noto Sans KR", sans-serif;
+    }
   }
 }

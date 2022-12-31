@@ -18,7 +18,7 @@ const SignUpPwInput = ({ value, onChange }) => {
         <input
           className="signUpPwInput"
           type="password"
-          placeholder="영문, 숫자, 특수문자 포함 8자 이상"
+          placeholder="사용하실 비밀번호를 입력하세요"
           value={value}
           onChange={onChange}
           required
@@ -37,7 +37,7 @@ const SignUpPwInput = ({ value, onChange }) => {
           className="signUpPwInput"
           type="password"
           required
-          placeholder="영문, 숫자, 특수문자 포함 8자 이상"
+          placeholder="사용하실 비밀번호를 입력하세요"
           value={pwCheck}
           onChange={onChangePwChk}
         ></input>

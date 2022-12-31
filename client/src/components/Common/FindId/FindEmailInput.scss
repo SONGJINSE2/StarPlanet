@@ -36,3 +36,12 @@
     font-weight: 700;
   }
 }
+
+@media (max-width: 500px) {
+  .findIdEmailInputContainer {
+    width: 85%;
+  }
+  .errorMessageWrap {
+    width: 85%;
+  }
+}

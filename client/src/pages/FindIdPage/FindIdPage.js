@@ -6,6 +6,8 @@ import Main_Logo from "../../assets/img/LandingPage/logo_main.svg";
 // import FindIdEmailInput from "../../components/Common/FindId/FindEmailInput";
 import SignUpNameInput from "../../components/Common/SignUp/SignUpNameInput";
 import SignUpEmailInput from "../../components/Common/SignUp/SignUpEmailInput";
+import FindIdNameInput from "../../components/Common/FindId/FindIdNameInput";
+import FindEmailInput from "../../components/Common/FindId/FindEmailInput";
 import FindIdBtn from "../../components/Common/FindId/FindIdBtn";
 import "./FindIdPage.scss";
 import axios from "axios";
@@ -55,14 +57,14 @@ const FindIdPage = () => {
           <div className="findIdtext">
             회원가입시 기재하셨던 정보를 입력해주세요.
           </div>
-          <SignUpNameInput
+          <FindIdNameInput
             value={username}
             onChange={(e) => {
               setusername(e.target.value);
               console.log(e.target.value);
             }}
           />
-          <SignUpEmailInput
+          <FindEmailInput
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);

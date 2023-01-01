@@ -70,8 +70,8 @@ const MakePlanetPage = () => {
       return;
     }
 
-    if (planetName.includes("?")) {
-      alert("행성이름에 특수문자는 사용할 수 없습니다");
+    if (planetName.includes("?") || planetName.includes(" ")) {
+      alert("행성이름에 특수문자 및 띄어쓰기는 사용할 수 없습니다");
       return;
     }
 

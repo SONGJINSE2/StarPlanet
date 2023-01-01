@@ -26,7 +26,6 @@ const ResetPw1Page = () => {
       data: { userID: userID, username: username, email: email },
     })
       .then((res) => {
-        console.log("천재", res.data);
         alert("비밀번호를 재설정해주세요");
         const uid = res.data.uid;
         navigate(`/resetpw2/${uid}`);

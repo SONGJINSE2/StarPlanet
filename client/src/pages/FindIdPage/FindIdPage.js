@@ -13,8 +13,9 @@ import "./FindIdPage.scss";
 import axios from "axios";
 
 const FindIdPage = () => {
-  const [username, setusername] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [emailValid, setEmailValid] = useState(false);
   const navigate = useNavigate();
 
   const handleForm = () => {
@@ -26,6 +27,7 @@ const FindIdPage = () => {
     })
       .then((res) => {
         console.log(res.data);
+
         alert("아이디는 " + res.data.userID + " 입니다.");
       })
       .then(() => {
@@ -33,6 +35,7 @@ const FindIdPage = () => {
       })
       .catch((err) => {
         console.log("An error occurred:", err);
+        console.log("히힣", { username }, { email });
         alert("사용자를 찾을 수 없습니다!");
       });
   };
@@ -60,7 +63,7 @@ const FindIdPage = () => {
           <FindIdNameInput
             value={username}
             onChange={(e) => {
-              setusername(e.target.value);
+              setUsername(e.target.value);
               console.log(e.target.value);
             }}
           />

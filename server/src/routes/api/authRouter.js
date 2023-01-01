@@ -109,9 +109,8 @@ router.get("/token", (req, res) => {
 
 // 아이디 찾기
 router.post("/findID", async (req, res) => {
-  console.log("findID!");
   const { username, email } = req.body;
-
+  console.log("메롱", req.body);
   try {
     // DB에서 사용자 검색
     User.findOne({ $and: [{ username }, { email }] }).exec((err, r) => {

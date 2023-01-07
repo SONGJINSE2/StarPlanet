@@ -59,28 +59,24 @@ const SignUpPage = memo(() => {
               value={userID}
               onChange={(e) => {
                 setuserID(e.target.value);
-                console.log(e.target.value);
               }}
             />
             <SignUpPwInput
               value={hashedPW}
               onChange={(e) => {
                 setPW(e.target.value);
-                console.log(e.target.value);
               }}
             />
             <SignUpNameInput
               value={username}
               onChange={(e) => {
                 setusername(e.target.value);
-                console.log(e.target.value);
               }}
             />
             <SignUpEmailInput
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
-                console.log(e.target.value);
               }}
             />
             <SignUpBtn onClick={handleForm} text={"회원가입"} />

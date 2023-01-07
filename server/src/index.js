@@ -11,8 +11,8 @@ const app = express();
 DB();
 
 /* env */
-const mode = "dev";
-// const mode = "prod";
+// const mode = "dev";
+const mode = "prod";
 // 서버에 업로드할 때 const mode = "prod"
 console.log("mode : ", mode);
 require("dotenv").config({

@@ -45,7 +45,6 @@ const ModifyPage = () => {
               value={userID}
               onChange={(e) => {
                 setuserID(e.target.value);
-                console.log(e.target.value);
               }}
               disabled={"true"}
             />
@@ -55,7 +54,6 @@ const ModifyPage = () => {
               value={username}
               onChange={(e) => {
                 setusername(e.target.value);
-                console.log(e.target.value);
               }}
               disabled={"true"}
             />
@@ -65,18 +63,9 @@ const ModifyPage = () => {
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
-                console.log(e.target.value);
               }}
             />
-            {/* <ModifyInput
-              text={"Tel"}
-              type={"tel"}
-              value={tel}
-              onChange={(e) => {
-                setTel(e.target.value);
-                console.log(e.target.value);
-              }}
-            /> */}
+
             <div className="modifyButtonBox">
               <ModifyButton text={"수정"} onClick={confirmModify} />
               <ModifyButton text={"회원탈퇴"} color={"error"} />

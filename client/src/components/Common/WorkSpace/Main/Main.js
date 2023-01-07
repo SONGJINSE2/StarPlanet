@@ -42,7 +42,6 @@ const Main = observer(() => {
       })
         .then((res) => {
           setData(res.data.planets);
-          console.log("바보", res.data.planets);
         })
         .catch((err) => console.log(err.response.data));
     }

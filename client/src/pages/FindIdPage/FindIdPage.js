@@ -64,30 +64,15 @@ const FindIdPage = () => {
             value={username}
             onChange={(e) => {
               setUsername(e.target.value);
-              console.log(e.target.value);
             }}
           />
           <FindEmailInput
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
-              console.log(e.target.value);
             }}
           />
-          {/* <FindIdNameInput
-            value={username}
-            onChange={(e) => {
-              setusername(e.target.value);
-              console.log(e.target.value);
-            }}
-          />
-          <FindIdEmailInput
-            value={email}
-            onChange={(e) => {
-              setemail(e.target.value);
-              console.log(e.target.value);
-            }}
-          /> */}
+
           <FindIdBtn onClick={handleForm} text={"아이디 찾기"} />
         </div>
       </div>

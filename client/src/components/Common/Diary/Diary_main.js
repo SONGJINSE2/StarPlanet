@@ -83,7 +83,6 @@ const Diary_main = ({ planetTitle }) => {
       <div className="Main_box">
         <div className="Diary_main_box">
           {_DATA.currentData().map((e, i) => {
-            console.log("바보", e._user.username);
             console.log(e.content, e);
             return (
               <Link to={`/diary/read/${planet}/${category}/${e._id}`}>

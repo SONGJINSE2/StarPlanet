@@ -62,13 +62,11 @@ const ResetPw2Page = () => {
           <ResetPw2PwInput1
             onChange={(e) => {
               setPW(e.target.value);
-              console.log(e.target.value);
             }}
           />
           <ResetPw2PwInput2
             onChange={(e) => {
               setPW(e.target.value);
-              console.log(e.target.value);
             }}
           />
           <div className="btnBox">

@@ -59,21 +59,18 @@ const ResetPw1Page = () => {
             value={userID}
             onChange={(e) => {
               setuserID(e.target.value);
-              console.log(e.target.value);
             }}
           />
           <ResetPw1NameInput
             value={username}
             onChange={(e) => {
               setusername(e.target.value);
-              console.log(e.target.value);
             }}
           />
           <ResetPw1EmailInput
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
-              console.log(e.target.value);
             }}
           />
           <ResetPw1Btn text={"비밀번호 재설정"} onClick={handleForm} />

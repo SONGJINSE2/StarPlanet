@@ -7,7 +7,7 @@ const FindEmailInput = ({ value, onChange }) => {
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
-    console.log(e.target.value);
+
     const regex =
       /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     if (regex.test(e.target.value)) {

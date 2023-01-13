@@ -8,7 +8,7 @@ const ResetPw2PwInput2 = ({ value, onChange }) => {
         <div className="pw2InputTitle">PW</div>
         <input
           type="password"
-          placeholder="영문, 숫자, 특수문자 포함 8자 이상"
+          placeholder="비밀번호를 입력해주세요"
           value={value}
           onChange={onChange}
           className="pw2Input"

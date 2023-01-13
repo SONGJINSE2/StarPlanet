@@ -173,9 +173,9 @@ function setUserToken(user) {
   user.type = "JWT";
   const token = jwt.sign(user.toJSON(), secret, {
     expiresIn: "1h", // 만료시간 1시간
-    issuer: "starplanet",
+    // issuer: "starplanet",
   });
-  console.log("token : ", token);
+  console.log("token하하하하하하 : ", token);
   return token;
 }
 

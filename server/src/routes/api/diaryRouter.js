@@ -300,7 +300,6 @@ router.put("/:_id", (req, res, next) => {
 
   Diary.findById({ _id, _user: req.user._id })
     .then((r) => {
-      console.log("000000000");
       console.log(r);
       console.log(req.user);
       if (!r) throw new Error("게시물이 존재하지 않습니다");

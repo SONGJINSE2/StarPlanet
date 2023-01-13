@@ -46,7 +46,6 @@ const MakePlanetPage = () => {
     (e) => {
       if (planetSelect !== null) {
         let current = document.getElementById(planetSelect);
-        // console.log(current);
         current.style.border = "5px solid";
         current.style.borderColor = "red";
       }

@@ -83,7 +83,6 @@ export default function BasicModal() {
   const deleteHandler = () => {
     if (window.confirm("정말로 탈퇴하실건가요..?")) {
       deleteUser();
-      console.log("회원탈퇴시켜줘");
       alert("회원탈퇴 되셨습니다. 이용해 주셔서 감사합니다.");
       return;
     } else {
@@ -92,7 +91,6 @@ export default function BasicModal() {
   };
 
   const deleteUser = () => {
-    console.log("안녕");
     let metaData = localStorage.getItem("userInfo");
     let userInfo = JSON.parse(metaData);
     axios({

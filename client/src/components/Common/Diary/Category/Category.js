@@ -31,7 +31,6 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const Category = observer(({ sx }) => {
   let params = useParams();
-  console.log("params : ", params);
   let navigate = useNavigate();
   const { planet, category } = params;
   const { planetClass } = store;

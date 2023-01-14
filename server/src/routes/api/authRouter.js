@@ -175,7 +175,7 @@ function setUserToken(user) {
     expiresIn: "1h", // 만료시간 1시간
     // issuer: "starplanet",
   });
-  console.log("token하하하하하하 : ", token);
+  console.log("token : ", token);
   return token;
 }
 

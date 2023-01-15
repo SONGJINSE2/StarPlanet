@@ -4,11 +4,11 @@
 
 ## 기술스택 :
 
-- Front-End : HTML/CSS/JavaScript/jQquery
-- Back-End : Node.js/MySQL/Axios
-  <br>
+- Front-End : HTML/CSS/JavaScript/React/jQquery/Axios
+- Back-End : Node.js/MongoDB Atlas/Axios
+<br>
 
-## 주요 기능 : <br>
+## 주요 기능 :
 
 - 회원관리 : 회원가입/로그인·아웃/개인정보수정/회원탈퇴/아이디찾기/비밀번호재설정
 - 기능관리 : 행성 생성/행성 삭제/게시글 작성·수정·삭제/댓글 작성·수정·삭제<br>

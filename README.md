@@ -5,8 +5,8 @@
 ## 기술스택 :
 
 - Front-End : HTML/CSS/JavaScript/React/jQquery/Axios
-- Back-End : Node.js/MongoDB Atlas/Axios
-<br>
+- Back-End : Node.js/MongoDB Atlas/Axios <br>
+
 
 ## 주요 기능 :
 
